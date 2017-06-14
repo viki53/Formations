@@ -1,0 +1,79 @@
+/* Mettre les paragraphes en italique */
+p {
+	font-style: italic;
+}
+
+/* Surligner tous les liens sans attribut `href` */
+a:not([href]) {
+	text-decoration: overline;
+}
+
+/* Changer la couleur d'une puce sur deux */
+ol > li:nth-child(even) {
+	color: pink;
+}
+ol > li:nth-child(2n+1) {
+	color: cyan;
+}
+
+/* Centrer les `section` sauf le premier */
+section:not(:first-of-type) {
+	width: 40em;
+	margin: auto;
+}
+
+/* Colorer les liens internes à la page en orange */
+a[href^="#"] {
+	color: orange;
+}
+
+/* Cacher les chapitres qui ne sont pas en cours de lecture (navigation via des ancres) */
+main > section:not(:target) {
+	display: none;
+}
+
+/* Appliquer un fond jaune temporaire animé au chapitre en cours de lecture */
+/* 		Méthode 1	 */
+@-webkit-keyframes highlightChapter {
+	0% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: transparent;
+	}
+}
+@keyframes highlightChapter {
+	0% {
+		background-color: yellow;
+	}
+	100% {
+		background-color: transparent;
+	}
+}
+@keyframes rainbow {
+	0% {
+		background-color: yellow;
+	}
+	25% {
+		background-color: green;
+	}
+	50% {
+		background-color: purple;
+	}
+	75% {
+		background-color: pink;
+	}
+	100% {
+		background-color: transparent;
+	}
+}
+main > section:target {
+	animation: highlightChapter 1.5s linear;
+}
+/* 		Méthode 2	 */
+main > section:target {
+	/*
+		Transitions
+		Attention : complexe
+	*/
+}

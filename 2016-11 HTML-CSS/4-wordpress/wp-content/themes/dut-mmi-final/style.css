@@ -1,0 +1,299 @@
+/*
+Theme Name: DUT MMI
+Author: MMI2 promo 2016
+Author URI: http://src.iut-laval.univ-lemans.fr/
+Description:
+Version: 1.0
+License: CC0
+License URI: https://creativecommons.org/publicdomain/zero/1.0/deed.fr
+Tags: black, white, yellow, light, one-column, two-columns, right-sidebar, flexible-width, monochrome
+Text Domain: dut-mmi
+
+Tous les styles du thème sont ci-dessous
+*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	margin: auto;
+	background-color: #f1f1f1;
+	color: #212121;
+}
+
+.container {
+	max-width: 60rem;
+	margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 1em 0;
+}
+
+h1 {
+	font-size: 28px;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 20px;
+}
+h4 {
+	font-size: 18px;
+}
+p {
+	margin: 10px 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+input,
+textarea,
+select,
+button {
+	display: inline-block;
+	font-size: inherit;
+	font-family: inherit;
+	padding: 10px 8px;
+	color: #212121;
+	background-color: #fff;
+	border: none;
+}
+input,
+textarea,
+select {
+	width: 100%;
+	border-bottom: 1px solid rgba(58, 58, 58, .3);
+}
+textarea {
+	resize: vertical;
+}
+button {
+	box-shadow: 0 2px 4px rgba(58, 58, 58, .3);
+}
+button:active {
+	box-shadow: 0 1px 2px rgba(58, 58, 58, .3);
+}
+
+#topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 50px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(58, 58, 58, .3);
+}
+
+#topbar > .container {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+#site-name {
+	float: left;
+	margin: 0;
+	font-size: 20px;
+	line-height: 20px;
+}
+#site-name > a {
+	display: block;
+	padding: 15px;
+	white-space: nowrap;
+}
+#top-menu {
+	float: right;
+}
+#top-menu > ul {
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 0;
+	padding: 0;
+	overflow-x: auto;
+}
+#top-menu > ul > li {
+	flex: 0 0 auto;
+	list-style: none;
+}
+#top-menu > ul > li > a {
+	display: block;
+	line-height: 20px;
+	padding: 15px;
+}
+
+#page {
+	margin: 50px 0 0;
+	overflow: hidden;
+	min-height: calc(100vh - 50px - 180px);
+}
+
+article,
+.widget,
+.comment {
+	margin: 20px 0;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(58, 58, 58, .3);
+}
+
+article h1,
+.comment h2 {
+	margin: 0;
+	border-bottom: 1px solid #f1f1f1;
+}
+article h1 a,
+.comment h2 {
+	display: block;
+	padding: 10px;
+}
+
+article > section,
+.comment > div {
+	padding: 0 10px;
+}
+.widget > .widget-content {
+	padding: 10px;
+}
+
+article footer,
+.comment footer {
+	padding: 0 10px;
+	border-top: 1px solid #f1f1f1;
+	overflow: hidden;
+}
+
+@media (min-width: 25rem) {
+	#sidebar {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.widget {
+		flex: 0 0 calc(50% - 10px);
+	}
+}
+
+@media (min-width: 40rem) {
+	#page > .container {
+		display: flex;
+	}
+	#content:not(:last-child) {
+		flex: 0 0 calc(75% - 10px);
+	}
+	#sidebar {
+		display: block;
+		flex: 0 0 calc(25% - 10px);
+		margin-left: 20px;
+	}
+	article {
+		border-radius: 0 3px 3px 0;
+	}
+	.widget {
+		border-radius: 3px 0 0 3px;
+	}
+	article,
+	.widget {
+		flex: none;
+	}
+}
+@media (min-width: 60rem) {
+	article,
+	.widget {
+		border-radius: 3px;
+	}
+}
+
+#comments > h1 {
+	font-size: 24px;
+	padding: 0 10px;
+	text-align: center;
+}
+
+.comments-list {
+	margin: 10px 0;
+	padding: 0;
+	list-style: none;
+}
+.comment {
+	margin: 20px 0;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(58, 58, 58, .3);
+	border-radius: 3px;
+}
+
+#comment-form {
+	margin-bottom: 20px;
+}
+#comment-form fieldset {
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+#comment-form legend {
+	display: block;
+	font-size: 24px;
+	font-weight: bold;
+	margin: 10px 0;
+	padding: 0 10px;
+	text-align: center;
+}
+#comment-form div {
+	margin: 10px 0;
+	/*padding: 0 10px;*/
+}
+#comment-form > fieldset ~ div {
+	text-align: center;
+}
+
+#footer {
+	background-color: #212121;
+	color: #fff;
+	overflow: hidden;
+}
+
+#footer .col {
+	margin: 10px 0;
+	padding: 0 10px;
+	overflow: hidden;
+}
+#footer .col > h1 {
+	margin: 10px 0;
+}
+#footer .col > ul {
+	margin: 0;
+	padding: 0;
+}
+#footer .col > ul > li {
+	margin: 0;
+}
+#footer .col > ul > li > a {
+	display: block;
+	padding: 5px 0;
+}
+
+@media (min-width: 40rem) {
+	#footer .row {
+		display: flex;
+	}
+	#footer .row > .col {
+		flex: 0 0 33%;
+	}
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Media</title>
+
+	<style>
+		audio, video{
+			width: 100%;
+			height: auto;
+			margin: 2em 0;
+		}
+		video::-webkit-media-controls-enclosure{
+			max-width: 100%;
+		}
+		video::-webkit-media-controls-panel{
+			background-color: pink;
+			box-shadow: 0 0 .5em .25em rebeccapurple;
+		}
+		video::-webkit-media-controls-play-button{
+			cursor: pointer;
+			background: url(https://upload.wikimedia.org/wikipedia/commons/9/9f/Wikiversity-Mooc-Icon-Video.svg);
+			background-size: contain;
+		}
+		video::-webkit-media-controls-time-remaining-display,
+		video::-webkit-media-controls-current-time-display{
+			color: cyan;
+			font-family: Comic Sans MS, Comis Sans, cursive;
+			font-size: 2em;
+		}
+		video::-webkit-media-controls-timeline-container{
+			background-color: green;
+			color: orange;
+		}
+		video::-webkit-media-controls-fullscreen-button{
+			cursor: pointer;
+			background: yellow url(http://uxrepo.com/static/icon-sets/google-material/svg/android-fullscreen.svg) no-repeat center;
+			background-size: contain;
+		}
+		video::-webkit-media-controls-fullscreen-button:hover,
+		video::-webkit-media-controls-fullscreen-button:focus{
+			background-size: 70% 70%;
+		}
+	</style>
+</head>
+<body>
+	<audio controls src="audio/test.mp3"></audio>
+
+	<video controls>
+		<source type="video/mp4" media="(min-width:1024px)" src="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_2160p_30fps_normal.mp4">
+		<source type="video/mp4" media="(min-width:400px)" src="http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4">
+		<source type="video/avi" src="http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_surround-fix.avi">
+	</video>
+</body>
+</html>

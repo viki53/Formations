@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Formulaire</title>
+	</head>
+	<body>
+		<h1>Exercice formulaire</h1>
+
+		<form method="GET" action="">
+			<fieldset>
+				<legend>Contact</legend>
+
+				<div>
+					<label for="field-nom">Nom complet <abbr title="Obligatoire">*</abbr></label>
+					<input type="text" name="nom" required id="field-nom" placeholder="Ex. : Jean Dupont">
+				</div>
+
+				<div>
+					<label for="field-email">Adresse e-mail <abbr title="Obligatoire">*</abbr></label>
+					<input type="email" name="email" required id="field-email" placeholder="Ex. : jean.dupont@email.com">
+				</div>
+
+				<div>
+					<label for="field-motdepasse">Mot de passe <abbr title="Obligatoire">*</abbr></label>
+					<input type="password" name="motdepasse" required pattern="([a-zA-Z0-9]{8,})" id="field-motdepasse">
+				</div>
+
+				<div>
+					<label for="field-telephone">Numéro de téléphone</label>
+					<input type="tel" name="telephone" id="field-telephone">
+				</div>
+
+				<div>
+					<label for="field-adresse">Adresse<label/>
+					<textarea name="adresse" cols="30" rows="3" id="field-adresse" placeholder="Votre adresse complète"></textarea>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Identité</legend>
+
+				<div>
+					<label for="field-naissance">Date de naissance <abbr title="Obligatoire">*</abbr></label>
+					<input type="date" name="naissance" required max="2015-10-19" id="field-naissance" placeholder="JJ/MM/AAAA">
+				</div>
+
+				<div>
+					<label for="field-age">Âge <abbr title="Obligatoire">*</abbr></label>
+					<input type="range" name="age" required min="0" max="125" step="25" id="field-age">
+					<output id="output-age"></output> ans
+				</div>
+
+				<div>
+					<label>Sexe <abbr title="Obligatoire">*</abbr></label>
+					<label>
+						<input type="radio" name="sexe" required value="homme" id="field-sexe-homme"> Homme
+					</label>
+					<label>
+						<input type="radio" name="sexe" required value="femme" id="field-sexe-femme"> Femme
+					</label>
+					<label>
+						<input type="radio" name="sexe" required value="autre" checked id="field-sexe-autre"> Autre
+					</label>
+				</div>
+
+				<div>
+					<label for="field-situation">Situation familiale <abbr title="Obligatoire">*</abbr></label>
+					<select id="field-situation" required>
+						<option value="">Veuillez choisir</option>
+						<option value="celibataire">Célibataire</option>
+						<option value="marie">Marié(e)</option>
+						<option value="veuf">Veuf/Veuve</option>
+						<option value="autre" selected>Autre</option>
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>CGU</legend>
+
+				<div>
+					<label for="field-cgu">J'accepte les conditions d'utilisation <abbr title="Obligatoire">*</abbr></label>
+					<input type="checkbox" required value="ok" id="field-cgu">
+				</div>
+			</fieldset>
+
+			<div>
+				<button type="reset">Recommencer</button>
+				<button type="submit">Valider</button>
+			</div>
+		</form>
+	</body>
+</html>

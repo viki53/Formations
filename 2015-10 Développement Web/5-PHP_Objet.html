@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Développement Web</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: .8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+			
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			blockquote, q{
+				font-style: italic;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+			.remark-code {
+				overflow-x: auto;
+			}
+			.remark-code:hover {
+				white-space: pre-wrap;
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.center ul, .center pre{
+				text-align: left;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5, .inverse h6 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4, .has-bg-image h5, .has-bg-image h6 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: inverse
+
+# Développement Web
+
+---
+
+## PHP : Programmation Orientée Objet
+(POO pour les intimes)
+
+---
+
+### Principes de bases
+
+Les objets en PHP sont des instances de classes
+
+Une *class* définit un ensemble de *propriétés* et de *méthodes* relatives à ces objets
+
+---
+
+#### Définir une *class*
+
+On définit une class de la façon suivante :
+
+```php
+<?php
+class Personne {
+    /* Quelques attributs */
+    $nom;
+    $prenom;
+    
+    /* Constructeur : définit les actions à effectuer à la création de l'objet */
+    __construct($nom, $prenom) {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+    }
+    
+    /* Une méthode */
+    function direBonjour () {
+        echo 'Bonjour ! Je m\'appelle '.$this->prenom.' '.$this->nom;
+    }
+}
+```
+
+Les nom de class sont, par convention, écrits en *CamelCase*
+
+---
+
+#### Créer un objet
+
+Pour créer un objet, on utilise le mot-clé `new` :
+
+```php
+<?php
+$jean = new Personne('Dupond', 'Jean');
+$jean->direBonjour();
+
+$jacques = new Personne('Dupont', 'Jacques');
+$jacques->direBonjour();
+```
+
+---
+
+#### Public, protected, private
+
+Les attributs et les méthodes peuvent avoir différents niveaux d'accès
+
+Imaginons la classe suivante :
+
+```php
+<?php
+class Personne {
+    private $numero_secu;
+    
+    function __construct($numero_secu, $nom, $prenom) {
+        $this->numero_secu = $numero_secu;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+    }
+    
+    public function getNumeroSecu() {
+        return $this->numero_secu;
+    }
+}
+```
+
+---
+
+##### `Private`
+
+Lorsqu'ils sont `private`, ils ne peuvent être utilisés qu'à l'intérieur de l'objet
+
+```php
+<?php
+$inconnu = new Personne(1234567890, 'Doe', 'Jane');
+$inconnu->numero_secu; // ERREUR
+```
+
+---
+
+##### `Public`
+
+Les attributs et méthodes `public` sont accessibles en directement, sans protection
+
+```php
+<?php
+$inconnu = new Personne(1234567890, 'Doe', 'Jane');
+$inconnu->getNumeroSecu(); // 1234567890
+```
+
+---
+
+##### Et `protected`, alors ?
+
+Il faudra maîtriser le principe d'héritage pour cela…
+
+---
+
+D'ailleurs, puisqu'on en parle…
+
+---
+
+#### Héritage
+
+Lorsque des class ont des méthodes et des attributs en commun, elles peuvent hériter d'une class commune : on parle alors d'héritage
+
+```php
+<?php
+class Personne {
+    $sexe;
+    $nom;
+    
+    function __construct($sexe, $nom) {
+        $this->sexe = $sexe;
+        $this->nom = $nom;
+    }
+    
+    public function direBonjour() {
+        echo 'Bonjour, mon nom est '.$this->nom;
+    }
+}
+
+class Homme extends Personne{
+    __construct($nom) {
+        parent::__construct('mâle', $nom);
+    }
+}
+
+$jean = new Homme('Jean');
+$jean->direBonjour();
+```
+
+---
+
+##### Parlons donc de `protected`
+
+Ce mot-clé permet donc de rendre un attribut (ou une méthode) accessible par les classe héritières, sans le rendre public
+
+Cela veut aussi dire qu'un attribut `private` n'est pas accessible par héritage
+
+---
+
+#### Un petit mot sur les interfaces
+
+Il est parfois pratique de définir un ensemble d'attributs et/ou de méthodes communs à plusieurs classes, sans forcément décrire leur comportement
+
+On pourra pour cela utiliser une interface, qui se contentera de lister ces attributs et méthodes, que les classes devront implémenter de leur côté
+
+---
+
+```php
+<?php
+interface Humain {
+    public function sayHi(){
+        /* Cette méthode devra obligatoirement être définie par chaque class implémentant cette interface */
+        /* Je ne décris pas son fonctionnement ici : je dis juste qu'elle doit être définie par chaque class */
+    }
+}
+
+class Francais implements Humain {
+    public function sayHi() {
+        echo 'Bonjour !';
+    }
+}
+class Anglais implements Humain {
+    public function sayHi() {
+        echo 'Hi!';
+    }
+}
+class Espagnol implements Humain {
+    public function sayHi() {
+        echo '¡Hola!';
+    }
+}
+```
+
+---
+
+Les class implémentant une interface doivent également respecter la signature des méthodes
+
+```php
+<?php
+interface Humain {
+    public function countTo($number){
+        /* Cette méthode devra obligatoirement être définie par chaque class implémentant cette interface */
+        /* Je ne décris pas son fonctionnement ici : je dis juste qu'elle doit être définie par chaque class */
+    }
+}
+
+class Francais implements Humain {
+    public function countTo($number) {
+        /* OK */
+    }
+}
+class Anglais implements Humain {
+    public function countTo() {
+        /* ERREUR */
+    }
+}
+```
+
+---
+
+A noter : les interfaces peuvent aussi étendre des interfaces, pour être plus précises
+
+```php
+<?php
+interface A {
+    public function methodeA () {}
+}
+interface B extends A {
+    public function methodeB () {}
+}
+
+class Z implements B {
+    public function methodeA () {
+        /* Le code de la méthode */
+    }
+    public function methodeB () {
+        /* Le code de la méthode */
+    }
+}
+```
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Développement Web</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: .8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+			
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			blockquote, q{
+				font-style: italic;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+			.remark-code {
+				overflow-x: auto;
+			}
+			.remark-code:hover {
+				white-space: pre-wrap;
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.center ul, .center pre{
+				text-align: left;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5, .inverse h6 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4, .has-bg-image h5, .has-bg-image h6 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: inverse
+
+# Développement Web
+
+---
+
+## PHP
+
+---
+
+### Installation et configuration locale
+
+---
+
+#### La méthode simple
+
+---
+
+Windows : [WAMP](http://www.wampserver.com/) / [EasyPHP](http://www.easyphp.org/)
+
+OS X : [MAMP](https://www.mamp.info/)
+
+Linux : voir *méthode longue*
+
+---
+
+#### La méthode longue
+
+(*pour systèmes Unix*)
+
+---
+
+##### Installer Apache
+
+```
+apt-get install apache2 apache2.2-common apache2-utils apache2-doc
+```
+
+Note : il est aussi possible d'utiliser *nginx* :
+* comme serveur HTTP à la place d'Apache
+* en tant que reverse-proxy
+
+---
+
+##### Installer PHP
+
+```
+apt-get install php5 php5-mysql php5-common php5-gd
+apt-get install libapache2-mod-php5
+```
+
+---
+
+##### Installer un SGBDR* (ici, MySQL)
+
+```
+apt-get install mysql-common mysql-client mysql-server
+```
+
+On peut aussi installer un outil graphique comme *PhpMyAdmin*
+
+```
+apt-get install phpmyadmin
+```
+
+.footnote[
+	SGBDR : Système de Gestion de Bases de Données Relationnelles
+]
+
+---
+
+### Le langage PHP
+
+Les fichiers ont l'extension `.php`
+
+Il doivent être exécutés par un serveur (et non ouverts en direct, comme on peut le faire pour du HTML simple)
+
+---
+
+#### Les blocs PHP
+
+Les instructions PHP sont regroupées entre les signes `<?php` et `?>`
+
+Il existe également une notation courte `<?` … `?>`
+
+Il est aussi possible de configurer le serveur pour utiliser la notation ASP (peu recommandé) `<%` … `%>`
+
+Les blocs peuvent être insérés dans du HTML
+
+Si un bloc PHP se situe à la toute fin d'un fichier, le signe de formeture est facultatif
+
+---
+
+#### Les instructions
+
+Une instruction correspond en général à une ligne de code. Il peut s'agir d'un **traitement**, d'une **déclaration**, etc.
+
+La fin de chaque instruction doit être indiquée par un point-virgule (`;`), sans quoi le compilateur ne peut fonctionner (erreur fatale)
+
+---
+
+#### Commentaires
+
+Il existe deux façons de commenter :
+
+```php
+<?php
+print('foo');
+// Une ligne commentée
+print('foo'); // Une fin de ligne commentée
+?>
+```
+
+```php
+<?php
+print('foo');
+/* Un bloc de commentaire
+Sur plusieurs lignes */
+print('foo');
+?>
+```
+
+---
+
+#### Les variables, les constantes et leurs différents types
+
+---
+
+##### Syntaxe
+
+###### Les variables
+
+Les variables ont une valeur qui peut être amenée à changer au long du programme
+
+Elles sont représentées avec un dollar (`$`) avant leur nom
+
+Le nom d'une variable doit commencer par un caractère non numérique et ne doit contenir aucun espace
+
+On peut utiliser le *camel case* (convention, méthode la plus courante) pour les noms composés
+
+```php
+<?php
+$nomDeLaVariable = 'valeur';
+?>
+```
+
+---
+
+On peut vérifier si une variable est définie de la façon suivante : 
+
+```php
+<?php
+isset($nomDeLaVariable);
+?>
+```
+
+On peut également savoir si elle a une valeur nulle (chaîne vide, entier égal à zéro, variable non définie…) : 
+
+```php
+<?php
+empty($nomDeLaVariable);
+?>
+```
+
+[Plus d'infos sur `empty`](http://fr.php.net/manual/fr/function.empty.php)
+
+---
+
+###### Les constantes
+
+Elles ont une valeur fixe pour l'ensemble du programme
+
+On les écrit par convention en majuscules, en *snake case* si nécessaire
+
+```php
+<?php
+define('NOM_DE_LA_CONSTANTE', 'valeur');
+?>
+```
+
+On peut vérifier si une constante existe de la façon suivante :
+
+```php
+<?php
+defined('NOM_DE_LA_CONSTANTE'); // true
+?>
+```
+
+---
+
+###### Afficher une variable ou une constante
+
+Il existe différentes façon d'afficher le contenu d'une variable. La plus courante étant le mot-clé `echo`.
+
+```php
+<?php
+$foo = 'bar';
+define('FOO', 'test');
+
+echo $foo; // bar
+echo FOO; // test
+?>
+```
+
+On peut aussi détailler une variable avec la fonction `var_dump()` :
+
+```php
+<?php
+$foo = 'bar';
+$test = 199;
+define('TEST', true);
+
+var_dump($foo); // string(3) "bar"
+var_dump($test); // int(199)
+var_dump(TEST); // bool(true)
+?>
+```
+
+On obtient ainsi des indications sur le **type**, la **taille** et la **valeur** d'une variable
+
+---
+
+###### Variables composées
+
+Il est aussi possible d'appeler une variable sans connaître son nom, via une autre variable :
+
+```php
+<?php
+$foo = 'toto';
+
+$toto = 'Je suis Toto';
+
+echo $$foo;
+?>
+```
+
+Note : ce n'est pas une utilisation courante, mais cela peut se révéler pratique dans certains cas
+
+---
+
+##### Les principaux types
+
+---
+
+###### Les [booléens](http://fr.php.net/manual/fr/language.types.boolean.php)
+
+Ils ne peuvent avoir que deux valeurs : `true` ou `false`
+
+```php
+<?php
+$vrai = true;
+$faux = false;
+
+echo $vrai; // 
+var_dump($vrai); // bool(true)
+echo $faux; // 
+var_dump($faux); // bool(false)
+?>
+```
+
+Les booléens ne sont donc pas faits pour être affichés
+
+---
+
+###### Les nombres
+
+Ils peuvent être [entiers](http://fr.php.net/manual/fr/language.types.integer.php) ou [décimaux](http://fr.php.net/manual/fr/language.types.float.php), positifs ou négatifs
+
+```php
+<?php
+$foo = 22;
+$bar = -7/2015;
+
+var_dump($foo); // int(22)
+var_dump($bar); // float(-0.0034739454094293)
+?>
+```
+
+---
+
+###### Les [chaînes](http://fr.php.net/manual/fr/language.types.string.php)
+
+Elles peuvent être combinées entre elles (ou avec des nombres) pour être affichées. Leur taille peut varier suivant les besoins (jusqu'à une limite de 2 Go).
+
+```php
+<?php
+$myName = 'Je m\'appelle';
+$name = 'Toto';
+$myAge = 'J\'ai ';
+$age = 38;
+$myAgeEnd = 'ans';
+
+echo $i_am.$name; // Je m'appelleToto
+echo $myAge.$age.' '.$myAgeEnd; // J'ai 38 ans
+?>
+```
+
+Il existe différentes méthodes pour décrire une chaîne :
+
+```php
+<?php
+$prenom = 'Toto';
+
+echo $prenom; // Toto
+echo "Bonjour\nJe m'appelle $prenom"; /* Bonjour
+Je m'appelle Toto */
+echo <<<EOD
+Bonjour
+Je m'appelle $prenom
+EOD /* Bonjour
+Je m'appelle Toto */
+?>
+```
+
+---
+
+###### Les [tableaux](http://fr.php.net/manual/fr/language.types.array.php)
+
+Il s'agit d'un ensemble de `clés:valeurs`. Les tableaux en PHP sont toujours associatifs.
+
+Les clés peuvent être des entiers ou des chaînes.
+
+Les valeurs peuvent être de n'importe quel type.
+
+```php
+<?php
+$tableau = array(
+	0 => 'toto',
+	'vrai' => true,
+	'Réponse à tout' => 42
+);
+?>
+```
+
+Une nouvelle syntaxe raccourcie existe aussi depuis PHP 5.4 :
+
+```php
+<?php
+$tableau = [
+	0 => 'toto',
+	'vrai' => true,
+	'Réponse à tout' => 42
+];
+?>
+```
+
+---
+
+Pour récupérer une valeur d'un tableau, on utilise des crochets :
+
+```php
+<?php
+var_dump($tableau[0]); // string(4) "toto"
+var_dump($tableau['vrai']); // bool(true)
+var_dump($tableau["Réponse à tout"]); // int(42)
+?>
+```
+
+On peut aussi définir une paire `clé:valeur` de la même façon
+
+```php
+<?php
+$tableau['test'] = array(18, 29, 40, 51, 62);
+
+print_r($tableau['test']); /* Array
+(
+    [0] => 18
+    [1] => 29
+    [2] => 40
+    [3] => 51
+    [4] => 62
+) */
+?>
+```
+
+---
+
+###### Les [objets](http://fr.php.net/manual/fr/language.types.object.php)
+
+---
+
+Les objets sont des types plus complexes : ce sont des instances de classes.
+
+Les objets ont des **propriétés** et des **méthodes** qui leurs sont propres.
+
+Les propriétés sont des variables : leurs noms sont des des chaînes de caractères.
+
+Les méthodes sont des fonctions qui s'appliquent à l'objet.
+
+On peut créer un objet à partir d'une classe ou en trans-typant un tableau.
+
+```php
+<?php
+$objet = new StdClass();
+$objet->{0} = 'toto';
+$objet->vrai = true;
+$objet->{'Réponse à tout'} = 42;
+?>
+```
+
+```php
+<?php
+$objet = (object) $tableau; // Méthode simple si le tableau existe déjà (mais moins efficace)
+?>
+```
+
+Note : les propriétés ayant un nom de type entier peuvent causer des problèmes de comportement, elles sont donc à éviter
+
+---
+
+###### D'autres types existent
+
+Il existe d'autres types, mais ceux-ci sont moins souvent manipulés :
+
+* **Les ressources** (font référence à des objets en mémoire, mais non accessibles directement par PHP, comme des fichiers, des connexions, des images…)
+* **Les callables** (des fonctions ou méthodes qui peuvent être appelées, par exemple à la fin d'un traitement)
+* **`NULL`** (valeur — constante — représentant une variable sans valeur)
+
+---
+
+#### Les blocs/structures (conditions, boucles, fonctions…)
+
+---
+
+##### Syntaxe générale des blocs
+
+Un bloc est en général délimité par des accolades : `{` au début, `}` à la fin
+
+Certains blocs peuvent aussi être rédigés de façon alternative sans accolades.  
+On utilise alors des doubles-points (`:`) pour indiquer le début du bloc et des mots-clés spécifiques (comme `endif`) suivis d'un point-virgule (`;`) pour signaler la fin de celui-ci
+
+---
+
+##### Les conditions
+
+Il existe plusieurs façons de définir une condition
+
+---
+
+###### La méthode de basique (`if`) :
+
+```php
+<?php
+if ($condition) {
+	// traitement
+}
+?>
+```
+
+```php
+<?php
+if ($condition) :
+	// traitement
+endif;
+?>
+```
+
+---
+
+On peut évidemment traiter les cas contraires :
+
+```php
+<?php
+if ($condition) {
+	// traitement
+}
+else {
+	// traitement alternatif
+}
+?>
+```
+
+```php
+<?php
+if ($condition) :
+	// traitement
+else :
+	// traitement alternatif
+endif;
+?>
+```
+
+---
+
+On peut également traiter plusieurs cas :
+
+```php
+<?php
+if ($condition) {
+	// traitement
+}
+elseif($autreCondition) {
+	// autre traitement
+}
+elseif($encoreUneAutreCondition) {
+	// encore un autre traitement
+}
+else {
+	// dernier traitement possible
+}
+?>
+```
+
+```php
+<?php
+if ($condition) :
+	// traitement
+elseif($autreCondition) :
+	// autre traitement
+else :
+	// dernier traitement possible
+endif;
+?>
+```
+
+---
+
+###### Les conditions ternaires
+
+Il s'agit d'une notation raccourcie, pratique pour de courtes actions
+
+```php
+<?php
+$condition ? /* traitement */ : /* traitement alternatif */;
+?>
+```
+
+Si la condition est vraie (avant le point d'interrogation `?`), la partie à gauche des deux points (`:`) sera exécutée, sinon la partie de droite le sera
+
+---
+
+###### Les `switch`
+
+Pour gérer différents cas suivant la valeur d'une variable, il est possible d'utiliser un `switch`
+
+```php
+<?php
+switch ($variable) {
+	case 'foo':
+		// Traitement
+	break;
+
+	case 'bar':
+	case 42:
+		// Autre traitement
+	break;
+
+	default:
+		// Traitement par défaut
+	break;
+}
+?>
+```
+
+---
+
+##### Les boucles
+
+Il existe plusieurs façons de boucler
+
+C'est au développeur de définir laquelle est la plus adaptée suivant les cas
+
+---
+
+###### `while`
+
+```php
+<?php
+while ($condition) {
+	// traitement
+}
+?>
+```
+
+La boucle `while` est exécutée tant que la condition est vérifiée
+
+###### `do while`
+
+```php
+<?php
+do {
+	// traitement
+} while ($condition);
+?>
+```
+
+La boucle `do while` est exécutée au moins une fois puis tant que la condition est vérifiée
+
+---
+
+###### `for`
+
+```php
+<?php
+for ($i=0; $i<50; $i++) {
+	// Traitement
+}
+?>
+```
+
+La boucle `for` permet de définir une déclaration de base, une condition à vérifier à chaque tour ainsi qu'une action à réaliser à chaque tour
+
+Cela correspond à la boucle `while` suivante :
+
+```php
+<?php
+$i = 0;
+while ($i < 50) {
+	// Traitement
+	$i++;
+}
+?>
+```
+
+---
+
+###### `foreach`
+
+Le `foreach` permet de boucler aisément sur un ensemble de données, comme un tableau
+
+```php
+<?php
+foreach ($tableau as $cle => $valeur) {
+	// Traitement
+}
+?>
+```
+
+Si les clés importent peu, on peut ne récupérer que les valeurs
+
+```php
+<?php
+foreach ($tableau as $valeur) {
+	// Traitement
+}
+?>
+```
+
+---
+
+##### Les fonctions
+
+Les fonctions permettent de définir un ensemble de traitements, réalisables en fonction d'éventuels **paramètres** d'entrée et pouvant retourner un **résultat**
+
+Cela permet d'éviter un code redondant lorsque la même action est effectuée à différents endroits, par exemple
+
+###### Définir une fonction
+
+On définit une fonction de la façon suivante :
+
+```php
+<?php
+function ma_fonction ($parametre1, $parametre2, $parametre3) {
+	// Traitements propre à la fonction
+	return $resultat;
+}
+?>
+```
+
+Par convention, les noms de fonctions sont écrits en snake case. Les noms de méthodes sont eux écrits en camel case.
+
+---
+
+###### Paramètres prédéfinis
+
+On peut assigner à certains paramètres une valeur par défaut. Cela les rend par la même facultatif
+
+```php
+<?php
+function ma_fonction ($parametre1, $parametre2 = 'toto', $parametre3 = 42) {
+	return $resultat;
+}
+?>
+```
+
+Une fonction peut n'avoir aucun paramètre. Elle peut aussi ne renvoyer aucun résultat.
+
+###### Appeler une fonction
+
+```php
+<?php
+$variable = ma_fonction('test', 'foo'); // La variable contiendra le retour de la fonction
+?>
+```
+
+---
+
+**Exercice pratique : définir et utiliser une fonction simple**
+
+Créer une fonction qui prend en entrée deux nombres, les multiplie entre eux et retourne le résultat.
+
+---
+
+**Exercice pratique : définir et utiliser une fonction plus complexe**
+
+Créer une fonction qui prend en entrée un tableau de valeurs et retourne chaque valeur triplée en réutilisant la fonction créer lors de l'exercice précédent. L'utiliser.
+
+Note : penser à utiliser une boucle dans la fonction et une autre (différente) pour afficher les résultats
+
+**BONUS** : *Modifier cette fonction pour qu'elle renvoie le carré de chaque nombre au lieu de son triple*
+
+---
+
+### Les données et le client
+
+---
+
+Le client (un navigateur manipulé par un utilisateur, un serveur distant…) peut envoyer des données de différentes façon
+
+Il existe pour cela différentes méthodes utilisable via HTTP : `GET`, `POST`, `DELETE` et `PUT`
+
+Les deux premières sont utilisables directement via un formulaire HTML, les deux autres doivent être utilisées manuellement ou simulées
+
+---
+
+#### Never Trust User Input
+
+**Il s'agit d'une des règles fondamentales du développement Web**
+
+Lorsqu'un utilisateur (serveur, application, personne…) envoie des données à un serveur, il est possible que celles-ci soient erronées, mal formatées, inutiles voire dangereuses
+
+Il est donc de la responsabilité du développeur de s'assurer que les données reçues et traitées correspondent à l'usage qu'il souhaite en faire
+
+De plus, lors d'un échange de requêtes HTTP, rien ne garantit que l'utilisateur est celui que l'on pense : il est donc possible de modifier les requêtes envoyés par quelqu'un pour effectuer des actions à son insu
+
+---
+
+#### Les différentes méthodes de récupération des données (GET, POST…)
+
+Des variables prédéfinies sont disponibles lorsqu'un script PHP est exécuté : elles sont appelée [**super-globales**](https://secure.php.net/manual/fr/language.variables.superglobals.php) car elles sont toujours définies, partout dans le script.
+
+Deux d'entres elles sont utiles pour récupérer les données envoyées par le client : `$_GET` et `$_POST`
+
+Il s'agit de tableaux alimentés avec les données envoyées au serveur
+
+---
+
+##### La méthode GET
+
+Les données GET sont visibles directement dans l'URL de la page visitée
+
+Elles sont le plus souvent signalées par un point d'interrogation (`?`) et symbolisées sous la forme `cle1=valeur1&cle2=valeur2&cle3=valeur3`
+
+On les utilise le plus souvent pour récupérer des données simples (terme de recherche, identifiant d'un article à visiter, etc.) et utiles à l'utilisateur (l'URL étant le plus souvent visible dans le navigateur)
+
+Ces informations sont, le plus souvent, définies à la place de l'utilisateur ou nécessaire pour partager la page courante dans son état actuel
+
+Note : ces informations sont parfois encodées pour rester compréhensible dans un charset simplifié, des caractères incompréhensibles par certains peuvent donc apparaître
+
+---
+
+##### La méthode POST
+
+Les données POST ne sont pas visibles dans l'URL mais sont envoyées dans les entêtes HTTP
+
+Cela permet d'envoyer des données plus imposantes (longs textes, images, données complexes, etc.)
+
+**Attention** : Bien que les données soient moins visibles, cette méthode n'ajoute **pas de sécurité supplémentaire**
+
+---
+
+**Exercice pratique : récupérer et manipuler les données d'un formulaire via GET**
+
+Créer un simple formulaire de recherche avec :
+* Un champ mot-clé (type `search`) obligatoire au format libre ;
+* Un champ catégorie (`select`) facultatif construit à partir d'un `array` ;
+* Une case recherche étendue (`checkbox`) facultatif ;
+* Un bouton de validation
+
+Puis, lorsque le formulaire est envoyé (sur la même page) récupérer les données en affichant le mot-clé de façon sécurisée (un appel à `htmlspecialchars($string, ENT_QUOTES, 'UTF-8')` constitue une base raisonnable), le nom de la catégorie sélectionnée le cas échéant et si la recherche étendue est activée ou non
+
+---
+
+**Exercice pratique : récupérer et manipuler les données d'un formulaire via POST**
+
+Créer un simple formulaire d'inscription (complexe) avec :
+* Un champ nom (type `text`) obligatoire au format libre ;
+* Un champ email (type `email`) obligatoire avec vérification du format ;
+* Un champ mot de passe (type `password`) obligatoire, d'une longueur minimale de 8 caractères, donc au moins 2 lettres et 2 chiffres (utiliser une expression régulière) ;
+* Des cases pour la catégorie d'âge (`radio`, d'après un `array`) ;
+* Un champ libre de biographie (`textarea`) ;
+* Un bouton de validation
+
+Puis, lorsque le formulaire est envoyé (sur la même page) récupérer les données et les afficher de façon structurée et sécurisée (on se contentera d'une protection basique, comme précédemment).
+
+---
+
+#### Stocker les données (fichier texte, session, cookies…)
+
+Les données récupérées par ces méthodes peuvent être stockées à différents endroits et suivant différents formats
+
+---
+
+##### Les sessions et cookies
+
+---
+
+###### Les sessions
+
+Les sessions permettent de stocker des informations légères liées au visiteur courant pour un temps limité (en général une heure) côté serveur
+
+Il suffit d'initialiser le module via `session_start()` avant que les entêtes HTTP ne soient envoyés (soit avant l'envoi de tout contenu)
+
+```php
+<?php
+session_start();
+$_SESSION['user_id'] = 18; //  Définit une variable de session
+?>
+```
+
+```php
+<?php
+session_start();
+var_dump($_SESSION['user_id']); // Détaille une variable de session
+?>
+```
+
+```php
+<?php
+session_start();
+session_unset(); // Détruit toutes les variables de la session
+?>
+```
+
+Note : les sessions reposent parfois sur un cookie, géré automatiquement géré par le serveur
+
+[Doc PHP sur le sessions](http://fr.php.net/manual/fr/book.session.php)
+
+---
+
+###### Les cookies
+
+Les cookies permettent de stocker des informations légères sur l'ordinateur du visiteur courant pour un temps défini (ou jusqu'à suppression par le client)
+
+```php
+<?php
+setcookie('user_id', 18, time() + 60*60*24*30); // Définit un cookie valable 30 jours
+?>
+```
+
+Il existe d'autres paramètres pour cette fonction, notamment pour définir un chemin et/ou un domaine de validité ou si le cookie ne doit être envoyée que via une connexion sécurisée (HTTPS)
+
+```php
+<?php
+var_dump($_COOKIE['user_id']); // Détaille un cookie
+?>
+```
+
+```php
+<?php
+setcookie('user_id', '', time() - 3600); // Détruit un cookie en définissant une expiration antérieur à l'heure actuelle (une heure pour être tranquille)
+?>
+```
+
+Il est aussi possible d'envoyer manuellement les entêtes HTTP pour définir/supprimer des cookies, même si cela est plus dangereux et difficile à maintenir
+
+[Doc PHP de la fonction `setcookie`](http://fr.php.net/manual/fr/function.setcookie.php)
+
+---
+
+##### Les fichiers texte
+
+Les fichiers sont généralement facile à manipuler en PHP car beaucoup de format sont nativement gérés (CSV, JSON, XML…)
+
+```php
+<?php
+$file = fopen('test.txt', 'r'); // $file est une ressource (cf. autres types)
+
+while ($line = fgets($file)) { // Lecture du fichier ligne par ligne
+	// Traitement sur la ligne
+}
+
+fclose($file);
+?>
+```
+
+[Doc PHP pour `fopen`](http://fr.php.net/manual/fr/function.fopen.php)
+
+---
+
+**Exercice pratique : Stocker une image uploadée**
+
+**PARTIE 1**
+
+Reprendre le code de l'exercice sur la méthode POST, le dupliquer, puis ajouter un champ avatar pour insérer une image :
+* Formats JPEG et PNG uniquement
+* Dimensions maximales : 600×600px
+* Poids maximum : 300 ko
+
+L'image pourra être stockée dans le dossier `images/avatars/` avec comme nom le *md5* du nom de fichier original et l'extension appropriée (`.jpg` ou `.png`)
+
+Les informations du profil seront à stocker dans un fichier texte au format CSV nommé `users.csv` dans le dossier `data`
+
+[Doc PHP de `move_uploaded_file`](http://fr.php.net/manual/fr/function.move-uploaded-file.php)
+
+**PARTIE 2**
+
+Une page pour lire ce fichier CSV sera également à créer pour lister les utilisateurs dans un tableau HTML, en affichant également leurs avatars (qu'il faudra donc retenir)
+
+---
+
+### Base de données
+
+Il existe différents types de bases de données (relationnelles ou non, par exemple) et une multitude de gestionnaires (SGBD ou SGBDR)
+
+L'un des SGBDR libres les plus courants, surtout couplé à PHP, est MySQL, basé sur le langage SQL
+
+MySQL fonctionne en tant que serveur : la BDD peut donc se trouver sur le même système (pratique pour les projets simples et peu risqués) ou sur une machine externe (utile pour les grosses applications)
+
+---
+
+#### Gestion d'une BDD via PhpMyAdmin
+
+*phpMyAdmin* permet de gérer facilement une base de données à distance via une interface graphique complète
+
+Il est aussi possible de gérer une BDD directement en ligne de commande via l'invité interactif `mysql` qui permet d'envoyer des requêtes SQL directement au serveur
+
+---
+
+**Exercice pratique : Mettre en place une BDD basique**
+
+Créer une base nommée `testdb`, ainsi qu'un utilisateur nommé `testdb_user` (mot de passe aléatoire) ayant les droits appropriés sur cette base
+
+Créer une table nommé `users` dans cette base permettant d'enregistrer les informations utilisées lors du dernier exercice, ainsi qu'un champ pour enregistrer la date d'inscription (remplissage automatique) et un ID (automatique)
+
+---
+
+#### Connexion à une base de données via PHP avec PDO
+
+Se connecter à une base de donnée est assez simple : il suffit de créer un objet PDO avec les bons paramètres
+
+```php
+<?php
+$db = new PDO($dsn, $user, $password, $options);
+?>
+```
+
+Cet objet nous permettra de conserver la connexion et de communiquer avec notre serveur MySQL.
+
+**Note** : Comme il s'agit de programmation orientée objet (POO), il est préférable de gérer les erreurs proprement
+
+```php
+<?php
+try {
+	$db = new PDO('mysql:host=localhost;dbname=testdb', 'testdb_user', 'password', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "UTF8"'));
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Permet de gérer les erreurs sous forme d'exceptions (il faudra donc adpater le code en conséquence)
+	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ); // Permet d'indiquer que l'on souhaite récupérer des objets pour les résultats des requêtes
+} catch (PDOException $e) {
+	echo 'La connexion à la base de donnée à échoué : ' . $e->getMessage();
+	die();
+}
+?>
+```
+
+[Référence PHP sur le constructeur de PDO](http://fr.php.net/manual/fr/pdo.construct.php)
+
+---
+
+#### Exécuter des requêtes SQL via PHP et exploiter les résultats
+
+---
+
+##### À propos de PDO
+
+`PDO` est une librairie objet permettant de communiquer avec un serveur SQL avec PHP
+
+Il existe d'autres librairies comme `mysqli` qui peuvent fonctionner de façon procédurale (`mysqli` ayant la particularité d'être mixte)
+
+La librairie `mysql_*` était très utilisée à une époque et souvent trouvée dans des codes anciens : elle a depuis été supprimée de PHP et est à proscrire, notamment à cause des problèmes de sécurité qu'elle pose
+
+[DOC officielle PDO](http://fr.php.net/manual/fr/book.pdo.php)
+
+---
+
+##### Requête simple ou préparée ?
+
+Une requête simple permet d'exécuter une action unique de façon rapide. Il faut néanmoins penser à se protéger d'éventuelles injections SQL
+
+```php
+<?php
+$result = $conn->query('SELECT * FROM tbl WHERE id = 42');
+?>
+```
+
+Une requête préparée permet d'exécuter plusieurs fois une même requête avec des paramètres différents tout en optimisant les performances et en échappant automatiquement les données
+
+```php
+<?php
+$query = $db->prepare('SELECT * FROM tbl WHERE age => :age_min OR pseudo = :pseudo');
+$query->bindParam(':pseudo', 'toto', PDO::PARAM_STR); // Cette chaîne sera protégée contre les injections SQL
+$query->bindParam(':age_min', 18, PDO::PARAM_INT); // Ce paramètre sera considéré comme un entier
+$query->execute();
+?>
+```
+
+Il s'agit de la méthode recommandée car elle limite les risques liés aux injections SQL
+
+---
+
+##### Insérer une ligne
+
+```php
+<?php
+$query = $db->prepare('INSERT INTO tbl (title, counter) VALUES(:title, :counter)');
+$query->bindParam(':title', 'Titre', PDO::PARAM_STR);
+$query->bindParam(':counter', 59, PDO::PARAM_INT);
+
+$inserted = $query->execute(); // La variable contient un booléen indiquant si la requête a été exécutée ou a échoué
+?>
+```
+
+---
+
+**Exercice pratique**
+
+Enregistrer les données des exercices précédents dans la table `users` au lieu du fichier CSV
+
+---
+
+##### Récupérer une ligne
+
+```php
+<?php
+$query = $db->prepare('SELECT * FROM tbl WHERE id = :id');
+$query->bindParam(':id', 18, PDO::PARAM_INT);
+$query->execute();
+
+$result = $query->fetch(); // La variable est nulle si aucune ligne n'est trouvée (le pointeur est à la fin)
+?>
+```
+
+---
+
+**Exercice pratique**
+
+Mettre en place un système de connexion avec les sessions
+
+Adapter la table `users` pour ajouter un champ pour appliquer un statut d'administrateur à certains membres (un booléen suffira)
+
+---
+
+##### Récupérer plusieurs lignes
+
+```php
+<?php
+$query = $db->prepare('SELECT * FROM tbl');
+$query->execute();
+
+$results = $query->fetchAll(); // On obtient un tableau de résultats
+?>
+```
+
+```php
+<?php
+$query = $db->prepare('SELECT * FROM tbl');
+$query->execute();
+
+while($result = $query->fetch()){
+	// On boucle directement sur les résultats
+}
+?>
+```
+
+---
+
+**Exercice pratique**
+
+Lister les membres présents dans la base de données sur une page réservée aux administrateurs
+
+---
+
+##### Supprimer une ligne
+
+```php
+<?php
+$query = $db->prepare('DELETE FROM tbl WHERE id = :id');
+$query->bindParam(':id', 42, PDO::PARAM_INT);
+
+$deleted = $query->execute(); // La variable contient un booléen indiquant si la requête a été exécutée ou a échoué
+?>
+```
+
+---
+
+##### Modifier une ligne
+
+```php
+<?php
+$query = $db->prepare('UPDATE tbl SET content = :content WHERE id = :id');
+$query->bindParam(':content', 'Nouveau contenu', PDO::PARAM_STR);
+$query->bindParam(':id', 42, PDO::PARAM_INT);
+
+$deleted = $query->execute(); // La variable contient un booléen indiquant si la requête a été exécutée ou a échoué
+?>
+```
+
+---
+
+**Exercice pratique**
+
+Reprendre la page créée précédemment
+
+Permettre de supprimer une ligne
+
+Mettre en place une page pour éditer le profil complet d'un membre
+
+---
+
+**Exercice pratique**
+
+Créer un système de blog basique via une table `posts` (titre, date, auteur, contenu)
+
+Afficher les articles sur une page publique (utiliser le design créé lors de la formation HTML/CSS), en affichant les infos sur l'auteur
+
+Permettre de gérer les articles sur une page privée (suppression, édition)
+
+---
+
+### Quelques notes et rappels
+
+---
+
+#### Sécurité
+
+Les injections SQL sont gérées directement à l'exécution d'une requête — et pour chaque requête — ou en amont
+
+Les injections XSS sont gérées à l'affichage, il est inutile de transformer les données ailleurs
+
+---
+
+#### Maintenance
+
+Il est conseillé de vérifier la déprécation des outils utilisés : un outil déprécié (ou en voie de l'être) est un outil qui ne fonctionnera plus dans un futur proche
+
+Un code clair et bien indenté est plus facile à lire et donc à reprendre, y compris par vous-même
+
+Commenter les passages les plus critiques (traitements complexes et/ou importants) est nécessaire pour la maintenance
+
+-----
+
+> "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live."
+— Martin Golding, 1994 (*officieusement*)
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>

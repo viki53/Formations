@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Article 5 — Thème WordPress</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="topbar">
+		<div class="container">
+			<h1 id="site-name"><a href="index.html" class="logo">DUT MMI</a></h1>
+
+			<nav id="top-menu">
+				<ul>
+					<li><a href="#content">Article</a></li>
+					<li><a href="#comments">Commentaires</a></li>
+					<li><a href="#comment-form">Répondre</a></li>
+					<li><a href="#sidebar">Menu</a></li>
+					<li><a href="#footer">Pied de page</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<div id="page">
+		<div class="container">
+			<main id="content">
+				<article>
+					<header>
+						<h1><a href="#0">Article 5</a></h1>
+					</header>
+					<section>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nisi nisl, pellentesque vel dapibus a, ultricies id velit. Nunc pretium pulvinar orci id fringilla. Phasellus et maximus tortor, sit amet ultrices enim. Nulla vitae interdum urna, sit amet congue lacus. Curabitur interdum sollicitudin justo vel posuere. Nam ac imperdiet ipsum. Nam tristique elementum pretium. In a lacus eget turpis egestas rutrum et vel mi.</p>
+
+						<p>Pellentesque a arcu metus. Nullam mattis maximus pulvinar. Sed consequat tristique sem ut ullamcorper. Suspendisse et mi auctor, porta enim sit amet, efficitur diam. Mauris aliquam, nisi eu pharetra auctor, augue nunc vestibulum dui, eu laoreet sapien quam et ex. Sed vel mi elit. Fusce justo felis, varius ac massa vel, varius bibendum diam. Fusce auctor fermentum metus, eget fringilla diam egestas vitae. Fusce laoreet metus at lectus aliquet aliquet. Sed varius viverra risus id lobortis. Aenean risus lectus, molestie sed sapien et, scelerisque consectetur arcu. Praesent ornare orci lorem, vitae imperdiet ex posuere et. Sed fringilla turpis interdum molestie pulvinar. Cras quis dolor commodo, commodo ante eu, sollicitudin ipsum. Donec tincidunt mi tortor, in aliquet erat tempus a. Suspendisse eu eleifend orci, a eleifend nibh.</p>
+
+						<p>Fusce quis finibus dolor. Integer mattis blandit nulla non accumsan. Ut volutpat, elit eu eleifend suscipit, neque nibh fringilla nisl, nec vehicula nisl velit ac sapien. Cras a gravida dolor. Ut aliquet mi et sollicitudin auctor. Sed vel pretium risus. In ullamcorper malesuada metus, et pellentesque libero pulvinar euismod. In viverra nunc urna, eget vehicula elit lobortis eget.</p>
+
+						<p>Maecenas maximus metus arcu, et imperdiet mi vulputate ac. Nullam porta sapien non quam elementum, sit amet congue justo pulvinar. Etiam sapien arcu, maximus at mauris et, volutpat aliquam nulla. Proin imperdiet ac magna at sollicitudin. Fusce quis pulvinar lectus. Quisque tempus aliquam cursus. Vivamus rhoncus sapien orci, a fringilla orci ornare sed. Mauris non nibh vulputate, volutpat odio ut, bibendum augue.</p>
+
+						<p>Curabitur tincidunt molestie odio sit amet iaculis. Duis eget erat et nibh dictum interdum at in est. Aenean tincidunt iaculis lectus, et eleifend ligula tristique ac. Nam gravida augue nec consectetur luctus. Nulla a odio finibus, posuere mauris in, tempor nibh. Pellentesque sed orci ornare, porttitor enim at, euismod ipsum. Quisque tristique consequat orci. Proin convallis urna vel rutrum tincidunt. Donec aliquam arcu justo, a ullamcorper mi gravida in. Pellentesque in eleifend ex, eget interdum enim. Nunc convallis bibendum ligula eu facilisis. Etiam sed nisi vel erat suscipit rutrum. Nullam scelerisque, tellus quis euismod cursus, mi nulla cursus enim, at pharetra ligula mi a ligula. Vestibulum sit amet ipsum leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+					</section>
+					<footer>
+						<p>
+							Posté <a href="single.html">le DD/MM/YYYY à hh:mm</a>
+							par <a href="#0">Auteur</a>
+						</p>
+						<p>
+							<a href="single.html#comments">5 commentaires</a>
+							—
+							<a href="single.html#comment-form">Répondre</a>
+						</p>
+					</footer>
+				</article>
+
+				<div id="comments">
+					<h1>5 commentaires</h1>
+
+					<ol class="comments-list">
+						<li class="comment">
+							<header>
+								<h2>Marie</h2>
+							</header>
+							<div>
+								<p>Texte</p>
+							</div>
+							<footer>
+								<p>Le DD/MM/YYYY à hh:mm</p>
+							</footer>
+						</li>
+						<li class="comment">
+							<header>
+								<h2>Élise</h2>
+							</header>
+							<div>
+								<p>Texte</p>
+							</div>
+							<footer>
+								<p>Le DD/MM/YYYY à hh:mm</p>
+							</footer>
+						</li>
+					</ol>
+				</div>
+
+				<form action="#comment-form" id="comment-form">
+					<fieldset>
+						<legend>Répondre</legend>
+
+						<div>
+							<label for="comment-form-author_name"></label>
+							<input type="text" name="author_name" id="comment-form-author_name">
+						</div>
+						<div>
+							<label for="comment-form-author_email"></label>
+							<input type="email" name="author_email" id="comment-form-author_email">
+						</div>
+						<div>
+							<label for="comment-form-content"></label>
+							<textarea name="content" id="comment-form-content" cols="30" rows="8"></textarea>
+						</div>
+					</fieldset>
+
+					<div>
+						<button type="submit">Valider</button>
+					</div>
+				</form>
+			</main>
+			<aside id="sidebar">
+				<div class="widget twitter-feed">
+					<div class="widget-content">
+						<div class="ratio-9-16">
+							Flux Twitter
+						</div>
+					</div>
+				</div>
+
+				<div class="widget advertisement">
+					<div class="widget-content">
+						<div class="ratio-9-16">
+							Une pub
+						</div>
+					</div>
+				</div>
+
+				<div class="widget facebook-widget">
+					<div class="widget-content">
+						<div class="ratio-9-16">
+							Widget Facebook
+						</div>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<nav class="col">
+					<h1>Pages</h1>
+					<ul>
+						<li><a href="page.html">Page #1</a></li>
+						<li><a href="page.html">Page #2</a></li>
+						<li><a href="page.html">Page #3</a></li>
+						<li><a href="page.html">Page #4</a></li>
+					</ul>
+				</nav>
+				<nav class="col">
+					<h1>Derniers articles</h1>
+					<ul>
+						<li><a href="single.html">Article #1</a></li>
+						<li><a href="single.html">Article #2</a></li>
+						<li><a href="single.html">Article #3</a></li>
+						<li><a href="single.html">Article #4</a></li>
+					</ul>
+				</nav>
+				<nav class="col">
+					<h1>Derniers commentaires</h1>
+					<ul>
+						<li><a href="single.html#comments">Par <strong>Élise</strong> sur <em>Article 5</em></a></li>
+						<li><a href="single.html#comments">Par <strong>Jean</strong> sur <em>Article 3</em></a></li>
+						<li><a href="single.html#comments">Par <strong>Marie</strong> sur <em>Article 5</em></a></li>
+						<li><a href="single.html#comments">Par <strong>Jacques</strong> sur <em>Article 2</em></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

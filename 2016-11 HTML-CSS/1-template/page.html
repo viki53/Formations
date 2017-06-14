@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<!-- aside#topbar>a[href=#0]#slogan+(.topbar-buttons>(form#topbar-search>input:search[name=query]#topbar-search-input)+a[href=#main-menu]#main-menu-toggler{Menu}) -->
+	<aside id="topbar">
+		<a href="#0" id="slogan"></a>
+
+		<div class="topbar-buttons">
+			<form action="#0" id="topbar-search">
+				<input type="search" name="query" id="topbar-search-input">
+			</form>
+			<a href="#main-menu" id="main-menu-toggler">Menu</a>
+		</div>
+	</aside>
+
+	<!-- nav#main-menu>ul>(li>a[href=#0]{Lien #$})*6 -->
+	<nav id="main-menu">
+		<ul>
+			<li><a href="#0">Lien #1</a></li>
+			<li><a href="#0">Lien #2</a></li>
+			<li><a href="#0">Lien #3</a></li>
+			<li><a href="#0">Lien #4</a></li>
+			<li><a href="#0">Lien #5</a></li>
+			<li><a href="#0">Lien #6</a></li>
+		</ul>
+	</nav>
+
+	<!-- header#header>(a#logo[href=#0]>img[src=img/logo.svg])+h1{Nom du site}+h2{Lorem ipsum dolor sit amet} -->
+	<header id="header">
+		<a href="#0" id="logo"><img src="img/logo.svg" alt=""></a>
+		<h1>Nom du site</h1>
+		<h2>Lorem ipsum dolor sit amet</h2>
+	</header>
+</body>
+</html>

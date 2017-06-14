@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Développement Web</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4, h5 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: 0.8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+			
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			blockquote, q{
+				font-style: italic;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+			.remark-code {
+				overflow-x: auto;
+			}
+			.remark-code:hover {
+				white-space: pre-wrap;
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.center ul, .center pre{
+				text-align: left;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4, .has-bg-image h5 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: inverse
+
+# Développement Web
+
+---
+
+## HTML / CSS
+
+.footnote[
+	[Tutoriel OpenClassrooms](https://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3)
+	[Tutoriel Zeste de Savoir](https://zestedesavoir.com/tutoriels/off/317/html-et-css/) (en cours de rédaction)
+]
+
+---
+
+### Concepts du HTML
+
+HyperText Markup Language
+
+Langage de balisage (comme XML) permettant de décrire et hiérarchiser les informations d'une page Web
+
+Extension par défaut `.html` (l'extension `.htm` existe aussi, même si elle devient plus rare)
+
+---
+
+### Les balises et leurs familles
+
+#### Block
+
+Les blocs permettent historiquement de regrouper des éléments dans un même ensemble
+
+#### Inline
+
+Les balises inline permettent de décrire des éléments spécifiques (texte important, lien, image…)
+
+#### HTML5
+
+En HTML5 cette distinction disparait peu à peu : il est ainsi possible de mettre des balises *block* dans des balises *inline*
+
+---
+
+### Structure globale des pages et du site
+
+---
+
+#### La page d'accueil
+
+Par défaut les serveurs cherchent un fichier `index.html` (l'extension peut varier suivant le langage privilégié)
+
+#### Les balises
+
+Les balises peuvent généralement (sauf exception) être imbriquées. Parfois un ordre précis est imposé.
+
+Les balises admettent le plus souvent des **attributs** pour les définir plus finement (comportement, style…)
+
+Certaines balises sont **auto-fermantes** (comme `<img />` ou `<br />` — le slash final est facultatif avec HTML5), les autres doivent être fermées (HTML5 permet des exceptions, mais le code n'en sera que plus clair) : `<p>` se ferme par exemple avec `</p>`
+
+---
+
+#### Liens et chemins
+
+Les liens permettent de relier des documents ou fichiers entre eux en spécifiant le chemin à suivre
+
+Il existe différents types de chemins
+
+##### Chemins relatifs
+
+Un lien relatif décrit un chemin à partir du répertoire courant
+
+##### Chemins absolus
+
+Un lien absolu décrit le chemin complet depuis le répertoire racine
+
+---
+
+### Le texte
+
+---
+
+#### Les titres
+
+Les titres sont regroupés sous les balises `<h1>` à `<h6>`
+
+#### Les paragraphes
+
+La balise `<p>` permet de définir des paragraphes
+
+#### Les citations
+
+Les balises `<blockquote>` et `<q>` permettent de définir des citations
+
+La balise `<cite>` (ainsi que l'attribut `cite`) permet d'indiquer la source
+
+#### Les marques d'importance
+
+Les balises `<strong>` et `<em>` permettent d'indiquer qu'un groupe de mots est important
+
+#### Les liens hypertextes
+
+La balise `<a>` permet de rendre un texte cliquable pour mener l'utilisateur vers une cible, définie par l'attribut `href`
+
+---
+
+### Les commentaires
+
+Comme beaucoup de langages, il est possible d'insérer des commentaires dans un document HTML
+
+```html
+<!-- Un commentaire -->
+```
+
+```html
+<!--
+Un commentaire
+sur plusieurs lignes
+-->
+```
+
+---
+
+### Utilisation des formulaires
+
+---
+
+#### Différents types de champs
+
+---
+
+##### `input`
+
+Permet à l'utilisateur d'entrer une valeur discrète. L'attribut `type` permet de préciser le comportement attendu
+
+###### Le type `text`
+
+Valeur par défaut : l'utilisateur peut entrer une ligne de texte
+
+###### Le type `password`
+
+Similaire au type `text`, à la différence que sa valeur n'est pas affichée
+
+###### Les types `radio` et `checkbox`
+
+Permet d'afficher des boutons radio (un seul choix possible) ou des cases à cocher (plusieurs choix possibles)
+
+Les valeurs envoyées au serveur sont donc pré-définies
+
+###### Le type `file`
+
+L'utilisateur peut choisir un fichier à envoyer
+
+---
+
+##### `select`
+
+Permet à l'utilisateur de choisir une (ou plusieurs) valeur dans une liste
+
+La liste peut être organisée (avec la balise `optgroup`)
+
+L'utilisateur peut rechercher une valeur au clavier
+
+**Attention** : les listes trop longues sont difficiles à manipuler, surtout sur mobile (pas de recherche)
+
+---
+
+##### `textarea`
+
+Zone de texte libre (utile pour les textes plus longs)
+
+Peut être dimensionné pour afficher plusieurs colonnes (attribut `cols`) ainsi que plusieurs lignes (attribut `rows`)
+
+---
+
+##### `button`
+
+Permet à l'utilisateur de déclencher une action (validation du formulaire, remise à zéro, traitement spécifique…)
+
+L'attribut `type` permet de spécifier l'action à déclencher :
+
+###### Type `submit`
+
+Permet de valider le formulaire dans lequel le bouton est présent
+
+###### Type `reset`
+
+Permet de réinitialiser (retour aux valeurs par défaut) le formulaire dans lequel le bouton est présent
+
+###### Type `button`
+
+Permet d'indiquer qu'il s'agit d'un bouton classique : aucune action ne sera déclenchée par le navigateur, mais le JavaScript peut effectuer des traitements si besoin
+
+---
+
+### Accessibilité et bonnes pratiques
+
+#### Les attributs importants
+
+* `alt` (texte alternatif) pour `img`
+* `title` (infobulle) pour les liens et tout élément manquant potentiellement de description
+* `id` pour les ancres (permet de créer des liens directs)
+
+#### Les attributs `aria`
+
+Ces attributs permettent de définir plus précisément les éléments HTML, ou de leur attribuer des rôles différents
+
+Cela permet notamment aux lecteurs d'écran d'ajuster leur comportement et/ou de guider l'utilisateur
+
+---
+
+### Exercice pratique
+
+Création d'une page simple, avec du texte organisé dans différents blocs
+
+Principe : organiser les contenus d'un livre, par tome, chapitre, paragraphe… avec les niveaux de titres et groupements adéquats
+
+---
+
+### Exercice pratique
+
+Création d'un formulaire complet avec différents types de champs (type formulaire de profil)
+* Nom complet
+* Adresse e-mail
+* Mot de passe
+* Numéro de téléphone
+* Date de naissance
+* Sexe
+* Situation familiale
+* Adresse
+* Acceptation des conditions d'utilisations
+
+---
+
+### Mise en page avec CSS
+
+Cascading StyleSheet
+
+Feuille de style en cascade
+
+.footnote[
+	[Documentation MDN](https://developer.mozilla.org/fr/docs/Web/CSS/Reference)
+]
+
+---
+
+#### Structure d'un document CSS
+
+Une CSS s'organise le plus souvent de la façon suivante :
+
+```css
+sélecteur {
+	propriété1: valeur;
+	propriété2: valeur1 valeur2 valeur3;
+}
+```
+
+#### Lier une CSS à un document HTML
+
+```html
+<link rel="stylesheet" href="css/style.css" />
+```
+
+---
+
+#### Les sélecteurs CSS
+
+Un sélecteur peut être simple ou complexe, suivant le niveau de spécificité nécessaire
+
+Différents composants peuvent ainsi entrer dans sa composition :
+
+* `element` : la balise ciblée
+* `#some-id` : l'id (identifiant unique dans le document) ciblé
+* `.class` : la class (identifiant multiple et commun) ciblée
+* `::pseudo-element` : l'élément généré ciblé (*shadow-DOM*)
+* `:state` : pseudo-classe (`:hover`, `:focus`, `:checked`), pour cibler un état précis
+* `[attr=value]` : sélecteur d'attribut (`[alt]`, `[href^="#"]`, `a[href*="exemple"]`), pour filtrer un attribut particulier en fonction de sa valeur
+
+.footnote[
+	[MDN : Sélecteur d'attribut](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/S%C3%A9lecteurs_d'attribut)
+]
+
+---
+
+#### Appliquer des propriétés CSS
+
+---
+
+##### Les unités
+
+`px` : pour définir une taille en pixels (principale unité dans le passé)
+
+`em` : pour définir des dimensions en fonction de la taille actuelle du texte
+`rem` : même principe, mais se base sur la taille du texte à la racine (*root*) du document
+
+`vh`/`vw`/`vmin`/`vmax` : unités relatives au viewport
+
+.footnote[
+	[Support unités relatives au viewport](http://caniuse.com/#feat=viewport-units)
+	[Support unité rem](http://caniuse.com/#feat=rem)
+]
+
+---
+
+##### Les principales propriétés
+
+.footnote[
+	[Référence CSS — MDN](https://developer.mozilla.org/fr/docs/Web/CSS/Reference)
+]
+
+---
+
+###### Dimensions
+
+```css
+box-sizing: border-box;
+```
+
+```css
+width: 400px;
+width: 25em;
+```
+
+```css
+height: 40px;
+height: 2.5em;
+```
+
+---
+
+###### Fond
+
+```css
+background-color: cyan;
+background-image: url('../img/fond.jpg');
+background-position: center center;
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: scroll;
+
+background: cyan url('../img/fond.jpg') center/cover no-repeat scroll; /* Notation raccourcie */
+
+background: cyan url('../img/fond.jpg') center/cover no-repeat scroll, url('../img/toto.jpg') top left repeat-x fixed; /* Notation avec plusieurs valeurs (CSS3) */
+```
+
+---
+
+###### Style de texte
+
+```css
+font-size: 1.5em; /* Pour agrandir la taille du texte */
+```
+
+[Doc MDN — font-size](https://developer.mozilla.org/fr/docs/Web/CSS/font-size)
+
+```css
+font-weight: bold; /* Permet de rendre le texte gras */
+font-weight: 700; /* Permet de rendre le texte gras */
+
+font-weight: normal;
+font-weight: 400;
+
+font-weight: 100; /* Rend le texte très fin */
+```
+
+[Doc MDN — font-weight](https://developer.mozilla.org/fr/docs/Web/CSS/font-weight)
+
+```css
+font-style: italic; /* Permet de rendre le texte italique */
+```
+
+[Doc MDN — font-style](https://developer.mozilla.org/fr/docs/Web/CSS/font-style)
+
+```css
+font-variant: small-caps; /* Permet d'afficher des petites capitales */
+text-transform: uppercase; /* Permet de passer le texte en majuscules */
+text-transform: capitalize; /* Permet d'appliquer une majuscule à chaque mot */
+```
+
+[Doc MDN — font-variant](https://developer.mozilla.org/fr/docs/Web/CSS/font-variant)
+[Doc MDN — text-transform](https://developer.mozilla.org/fr/docs/Web/CSS/text-transform)
+
+---
+
+###### Décoration de texte
+
+```css
+text-decoration: underline; /* Permet de souligner le texte */
+text-decoration: overline; /* Permet de souligner le texte */
+```
+
+[Doc MDN — text-decoration](https://developer.mozilla.org/fr/docs/Web/CSS/text-decoration)
+
+---
+
+###### Alignement de texte
+
+```css
+text-align: left; /* Aligne le texte à gauche */
+text-align: right; /* Aligne le texte à droite */
+text-align: center; /* Centre le texte */
+text-align: justify; /* Texte justifié */
+```
+
+[Doc MDN — text-align](https://developer.mozilla.org/fr/docs/Web/CSS/text-align)
+
+```css
+-moz-text-align-last: start;
+text-align-last: start; /* La dernière ligne est alignée suivant la direction du texte */
+```
+
+[Doc MDN — text-align-last](https://developer.mozilla.org/fr/docs/Web/CSS/text-align-last)
+
+---
+
+#### CSS3 : animations, transitions, ombres… et préfixes propriétaires
+
+.footnote[
+	[Can I Use, pour vérifier le support d'une propriété avancée](http://caniuse.com/)
+]
+
+---
+
+##### Préfixes propriétaires
+
+Les propriétes encore en développement (généralement lorsque les spécificatiosn ne sont pas totalement fixées) sont implémentées avec un préfixe
+
+```css
+-webkit-transition: none; /* Pour WebKit et Blink (Safari, Android, Chrome, Opera) */
+-moz-transition: none; /* Pour Gecko (Firefox, Firefox OS) */
+-ms-transition: none; /* Pour Trident (Internet Explorer) */
+-o-transition: none; /* Pour Presto (ancienns versions d'Opera) */
+transition: none; /* Pour tous les navigateurs à jour */
+```
+
+Suivant le besoin, on implémente les préfixes nécessaires, en terminant par la propriété officielle
+
+Le site [Can I Use](http://caniuse.com/) permet généralement de savoir quels préfixes sont nécessaires
+
+Des plugins pour différents éditeurs/IDE/builders existent également pour ajouter les préfixes de façon automatique, suivant une configuration précise
+
+---
+
+##### Les ombres
+
+La propriété `box-shadow` permet d'ajouter une ombre sur un bloc :
+
+```css
+box-shadow: inset 0 0 5px 10px #000;
+```
+
+L'ombre peut être externe (comportement par défaut) ou interne (`inset`)
+
+Il est aussi possible d'appliquer plusieurs ombres, en les séparant par une virgule
+
+----------
+
+La propriété `text-shadow` a un comportement similaire pour appliquer une ombre sur un texte
+
+.footnote[
+	[Doc MDN — box-shadow](https://developer.mozilla.org/fr/docs/Web/CSS/box-shadow)
+	[Doc MDN — text-shadow](https://developer.mozilla.org/fr/docs/Web/CSS/text-shadow)
+]
+
+---
+
+##### La propriété `transition`
+
+Elle permet de gérer le passage d'une valeur à une autre, pour une ou plusieurs propriétés.
+
+Cette propriété permet également de gérer le temps de l'animation, de la jouer après un certain délai ou de régler la vitesse en suivant une fonction (*easing*)
+
+```css
+transition: opacity 1s ease-in-out;
+```
+
+Il est également possible de définir plusieurs transitions en les séparant par des virgules
+
+.footnote[
+	[Doc MDN — transition](https://developer.mozilla.org/fr/docs/Web/CSS/transition)
+]
+
+---
+
+##### La propriété `animation` et les keyframes
+
+Les keyframes permettent de décrire une animation en définissant des points-clés
+
+
+```css
+@keyframes mySuperAnimation {
+	0%, 100% { opacity: 0; }
+	50% { opacity: 1; }
+}
+```
+
+La propriété `animation` permet d'utiliser les keyframes définies auparavant
+
+```css
+animation: mySuperAnimation 1s infinite;
+```
+
+Les animations peuvent être répétées, jouées à l'envers, avec un délai, cumulées et être lues selon une fonction d'*easing*
+
+Il est également possible d'appliquer plusieurs animations en les séparant par des virgules
+
+.footnote[
+	[Doc MDN — Animations CSS](https://developer.mozilla.org/fr/docs/Web/CSS/Animations_CSS)
+]
+
+---
+
+#### Exercices pratiques
+
+---
+
+##### Trouver le bon sélecteur
+
+* Mettre les paragraphes en italique
+* Surligner tous les liens
+* Dans les listes, changer la couleur d'une puce sur deux
+* Centrer tous les titres `h1` sauf le premier
+* Colorer les liens internes en orange
+
+---
+
+##### Mettre en place une page de blog
+
+* Une barre sur toute la largeur en haut avec son contenu centré (logo à gauche, une barre de recherche à droite)
+* Une barre de liens horizontaux en-dessous, sur le même principe
+* Une partie principale avec le milieu sur fond clair (mais pas blanc)
+* Une barre verticale à gauche
+* Plusieurs articles à droite, avec :
+	* Un cadre (bordure) arrondi dans les angles et une ombre légère
+	* Un titre (lien) avec un fond différent (qui change de couleur au survol) et une bordure en bas
+	* Du contenu ([lipsum.com](http://lipsum.com/)) sur fond blanc
+* Un pied de page avec un fond
+
+---
+
+### Aller plus loin
+
+---
+
+#### Les images
+
+La balise `img` permet d'insérer simplement une image
+
+En HTML5 et pour respecter les principes de design responsive, de nouvelles méthodes sont apparues
+
+---
+
+##### Le SVG
+
+Le format SVG permet de décrire une image de façon vectorielle (à la différence des fichiers bitmap habituels)
+
+Il s'agit d'une norme XML permettant de décrire des lignes, courbes, chemins et autres formes sans contrainte de pixel
+
+On peut insérer du SVG dans une page HTML5 de différentes manières : avec `img` (simple), avec `object` (peu recommandé) ou directement en insérant une balise `svg` et le code XML du dessin
+
+Un dessin SVG est donc agrandissable à l'infini sans perte de qualité
+
+Les éléments SVG peuvent aussi être animés et stylisés via du CSS, lorsque celui-ci est intégré directement dans la page
+
+---
+
+##### Gérer les image responsives
+
+De nouvelles balises sont aussi apparues avec HTML5 pour afficher des éléments multimédia, comme `audio` ou `video`
+
+Parmi ces balises, `picture` permet de définir différentes sources pour une même image, ce qui permet de charger différents bitmaps selon les besoins (résolution différente, par exemple)
+
+```html
+<picture>
+    <source media="(min-width: 64em)" src="high-res.jpg">
+    <source media="(min-width: 37.5em)" src="med-res.jpg">
+    <source src="low-res.jpg">
+    <img src="fallback.jpg" alt=""><!-- Image par défaut, chargée sur les navigateurs ne supportant pas la balise picture -->
+    <p>Texte descriptif pour l'accessibilité</p>
+</picture>
+```
+
+---
+
+#### Insérer un son
+
+Avant HTML5 il fallait souvent recourir à Flash pour insérer du son ou de la vidéo dans une page Web
+
+```html
+<audio controls>
+    <source type="audio/ogg" src="audio.ogg">
+    <source type="audio/wav" src="audio.wav">
+</audio>
+```
+
+Ou, plus simplement
+
+```html
+<audio controls src="son.ogg"></audio>
+```
+
+Attention toutefois au support des formats, surtout lorsqu'ils sont propriétaires
+
+---
+
+#### Insérer une vidéo
+
+Le format est le même que pour du son :
+
+```html
+<video controls>
+    <source type="video/ogv" src="video.ogv">
+    <source type="video/x-matroska" src="video.mkv">
+</video>
+```
+
+Ou, plus simplement
+
+```html
+<video controls src="video.ogv"></video>
+```
+
+Encore une fois, attention toutefois au support des formats
+
+---
+
+#### Ajouter des sous-titres
+
+La balise `track` permet de préciser une version textuelle pour un son ou une vidéo
+
+Elle s'utilise au même niveau que la balise `source`
+
+
+```html
+<audio controls>
+    <track kind="captions" src="toto.fr.vtt" srclang="fr" label="Transcription française">
+</audio>
+```
+
+```html
+<video controls>
+    <track kind="subtitles" src="toto.fr.srt" srclang="fr" label="Sous-titres français">
+</video>
+```
+
+.footnote[
+    [Doc MDN `track`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/track)
+]
+
+---
+
+#### Exercices pratiques
+
+---
+
+Créer et décorer un lecteur audio en boucle dans une page Web
+
+Il faudra utiliser le *shadow-DOM*
+
+.footnote[
+    Note : *attention à ce genre d'usage intrusif en production*
+]
+
+---
+
+Insérer et décorer (via le shadow-DOM) un lecteur vidéo dans une page Web
+
+Utiliser, si possible, des dégradés en CSS (tant pis si c'est moche)
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>

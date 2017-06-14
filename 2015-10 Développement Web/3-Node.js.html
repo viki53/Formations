@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Développement Web</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: .8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+			
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			blockquote, q{
+				font-style: italic;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+			.remark-code {
+				overflow-x: auto;
+			}
+			.remark-code:hover {
+				white-space: pre-wrap;
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.center ul, .center pre{
+				text-align: left;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5, .inverse h6 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4, .has-bg-image h5, .has-bg-image h6 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: inverse
+
+# Développement Web
+
+---
+
+## Node.js
+
+---
+
+### Principes de base
+
+---
+
+#### Qu'est-ce que Node.js ?
+
+Node.js permet de faire tourner un serveur complet (pas besoin d'Apache, nginx ou IIS) développé en JavaScript (via le moteur V8 issu de Chromium)
+
+C'est au programme de gérer chaque requête pour répondre en conséquence
+
+Il est aussi possible d'exécuter des programmes locaux, de façon unique ou continue, sans agir comme un serveur (usage en ligne de commande)
+
+Son usage ressemble fort à PHP, avec des différences notables :
+
+* langage asynchrone et événementiel
+* gestion des requêtes autres qu'HTTP (sockets par exemple)
+* utilisation en tant que démon simple
+* langage très répandu côté client (permet de répliquer des bouts de code facilement)
+
+Il y a en revanche quelques inconvénients, principalement liés au langage JavaScript et son fonctionnement : il faudra donc bien connaître ce langage pour éviter certains pièges
+
+---
+
+#### NPM et la gestion de dépendances
+
+Il est possible d'inclure des modules (packages) via NPM (automatiquement installé avec Node.js)
+
+Il faut les spécifier via le fichier *package.json* à la racine de votre application
+
+La commande `npm install` permet d'installer automatiquement les packages spécifiés
+
+Dans un programme on peut donc utiliser un package via la fonction `require` :
+
+```javascript
+var fs = require('fs');
+```
+
+Certains packages sont inclus de base dans Node.js : il est donc inutile de les inclure au fichier package.json
+
+---
+
+#### Créer un serveur Web
+
+```javascript
+var http = require('http');
+
+var server = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('Salut tout le monde !');
+});
+server.listen(8080);
+```
+
+---
+
+### Exercice pratique
+
+---
+
+**Créer un premier programme**
+
+Le but du programme sera d'écrire *Hello World* (avec [`process.stdout.write(msg)`](https://nodejs.org/docs/latest/api/process.html#process_process_stdout)) dans la console puis de se terminer
+
+Votre programme pourra éventuellement répéter ce message en fonction d'un paramètre d'entrée
+
+.footnote[
+    Vous pouvez utiliser [`process.argv`](https://nodejs.org/docs/latest/api/process.html#process_process_argv) pour récupérer les arguments
+]
+
+---
+
+**Mettre en place un petit serveur Web**
+
+* Capable d'envoyer l'heure à la racine
+* Capable d'envoyer des fichiers statiques (HTML, images, CSS, etc.)
+
+---
+
+### Aller plus loin
+
+---
+
+#### Organiser son serveur Web
+
+Il existe différent framework pour gérer un serveur Web
+
+Le plus connu étant [Express](http://expressjs.com/)
+
+---
+
+#### Communiquer en temps réel avec le client
+
+En HTML5 les WebSockets permettent de conserver un lien permanent (dans la mesure du possible) entre le client et le serveur
+
+[Socket.io](http://socket.io/) permet de gérer simplement les messages échangés ainsi
+
+Cette librairie permet aussi de combler les lacunes de certains navigateurs, en passant par exemple par de simple requêtes AJAX si les WebSockets ne sont pas supportées, de façon transparente pour le développeur
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ergonomie des interfaces tactiles</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: 0.8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: has-bg-image
+background-image: url(touch-interface.jpg)
+
+# Ergonomie des interfaces tactiles
+
+---
+class: has-bg-image
+background-image: url(finger-painting.jpg)
+
+## Les doigts comme pointeur
+
+---
+
+### Une précision diminuée
+
+Des zones réactives plus grandes : 7mm minimum (10mm optimal)
+
+La main cache une partie de l'écran
+
+---
+
+### Un pointeur multiple
+
+La majorité des écrans et OS mobiles gèrent le multi-touch
+
+---
+
+### Une vitesse accrue
+
+Un seul outil à manipuler
+
+Possibilités de faire plusieurs choses en même temps
+
+---
+
+### De nouvelles interactions
+
+Tap
+
+Drag'n'drop
+
+Pinch to zoom
+
+[…]
+
+Momentum
+
+---
+class: has-bg-image
+background-image: url(devices.jpg)
+
+## Des supports divers et variés
+
+---
+
+### Des écrans de toutes tailles et résolutions
+
+---
+
+#### Sur smartphones
+
+De 3,1 à 5,5 pouces
+
+De 320×480 à 1080×1920 pixels
+
+De 163 à 467 PPI
+
+.footnote[
+	PPI : Pixel Per Inch
+	Source : http://screensiz.es/
+]
+
+---
+
+#### Sur tablettes
+
+De 7 à 11,6 pouces
+
+De 800×600 à 2560×1600 pixels
+
+De 132 à 326 PPI
+
+.footnote[
+	PPI : Pixel Per Inch
+	Source : http://screensiz.es/
+]
+
+---
+
+**Et il ne s'agit ici que des modèles les plus courants**
+
+---
+
+### Des performances différentes
+
+---
+
+Des tablettes moins véloces que certains smartphones
+
+Des smartphones aussi puissants que des ordinateurs
+
+---
+
+### Des capacités différentes
+
+---
+
+Stockage interne/externe
+
+Batterie
+
+Appareil(s) photo
+
+Accéléromètre
+
+Boussole
+
+Bluetooth
+
+Wifi
+
+NFC
+
+Biométrie
+
+…
+
+---
+class: has-bg-image
+background-image: url(phone-lanes.jpg)
+
+## Un support mobile
+
+---
+
+### Un support instable
+
+L'utilisateur marche, court, conduit, fait du vélo*… en utilisant son smartphone et/ou sa tablette
+
+Le réseau n'est pas forcément stable : perte de connexion, signal faible…
+
+L'outil (smartphone, tablette…) est le plus souvent sur batterie
+
+L'écran est parfois exposé au soleil ou a une luminosité réduite
+
+.footnote[
+	\* Barrez les mentions illégales
+]
+
+---
+
+### Une utilisation plus directe
+
+Afficher les bonnes informations au bon moment
+
+Supprimer les écrans/actions inutiles
+
+Réduire la taille des formulaires
+
+Simplifier l'affichage : les tableaux deviennent des listes simples avec détail au clic/tap, on supprime les éléments non-essentiels
+
+.footnote[
+	http://www.lukew.com/ff/entry.asp?1948
+	http://www.lukew.com/ff/entry.asp?1903
+]
+
+---
+
+**« *L'utilisateur mobile est plus pressé et frustré qu'un parisien sur le périphérique en heure de pointe* »**
+
+---
+
+## Simplifier les interactions et la navigation
+
+---
+
+### Faire des choix
+
+Limiter les fonctionnalités : implémenter des fonctionnalités incomplètes ou non adaptées sera frustrant et contre-productif
+
+### Aider l'utilisateur
+
+Demander moins d'infos, simplifier les différents process
+
+### Utiliser des outils connus
+
+Permettre à l'utilisateur de se connecter via l'API Facebook, Twitter, Google+, etc.
+
+Utiliser les fonctionnalités natives (partage, email, appel…)
+
+Ne pas ré-inventer la roue
+
+---
+
+## Les apports du mobile
+
+---
+
+Un accès plus rapide à l'information et à certaines fonctionnalités
+
+Un appareil photo toujours* sous la main
+
+NFC pour échanger des données sans contraintes
+
+Des capteurs physiques (accéléromètre, boussole, GPS) pour se repérer
+
+.footnote[
+    \* Ou presque
+]
+
+---
+
+## Gérer les pertes de réseau
+
+---
+
+### Manifest HTML5
+
+Permet de gérer un cache local (complexe à gérer)
+
+### localStorage
+
+Uniquement en Web (HTML5) ou hybride (Cordova ou équivalents) : utile pour stocker de petites infos (tokens, préférences…) de façon simple
+
+Données supprimées lors de la désinstallation de l'appli, conservées lors de MAJ
+
+### Stockage local
+
+Pour conserver des fichiers et limiter les appels au réseau (idéal pour les images ou des données brutes)
+
+Stockage brut de fichiers (format libre) dans des dossiers précis, parfois supprimés par l'OS
+
+### Base SQLite
+
+Idéal pour stocker des données formatées dans un SGBDR + possibilité de migrer aisément
+
+Attention aux performances sur de grandes quantités de données
+
+---
+
+## Gérer les mises à jour
+
+---
+
+### Contrôler la disponibilité d'une MAJ
+
+Un simple appel serveur suffit
+
+### Forcer la MAJ
+
+Une fois le contrôle fait, il suffit de rediriger vers le store ou de désactiver l'appli
+
+Attention aux utilisateurs qui ne peuvent faire le MAJ : pas de réseau, stockage insuffisant…
+
+### Les MAJ automatiques
+
+La plupart des stores proposent des MAJ automatiques, tant que les permissions restent les mêmes et que le réseau le permet
+
+---
+
+## Les pièges à éviter
+
+Développer un site responsive/mobile quand une appli serait plus adaptée
+
+Créer une appli quand un site mobile/responsive serait plus adapté
+
+Mettre en place des fonctionnalités inutiles
+
+Faire du beau au lieu de faire fonctionnel/pratique/simple
+
+---
+
+## Quelques liens pratiques
+
+[Material Design Guidelines](https://www.google.com/design/spec/material-design/introduction.html)
+[tota11y, pour tester l'accessibilité](http://khan.github.io/tota11y/)
+[Opquast, guide des bonnes pratiques](http://opquast.com/fr/)
+
+## Quelques personnes intéressantes
+
+[Luke Wroblewski](http://www.lukew.com/)
+[Stephanie Walter](http://www.inpixelitrust.fr/blog/)
+
+---
+
+# Me contacter
+
+Corentin Hatte
+
+contact@corentin-hatte.eu
+
+[Site perso](http://www.corentin-hatte.eu/) | [Site pro](http://www.comin2.com/)
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>

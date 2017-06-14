@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction au développement Web</title>
+
+		<style>
+			@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+			body {
+				font-family: 'Droid Serif';
+				color: #212121;
+			}
+
+			h1, h2, h3, h4, h5 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+				text-align: center;
+				line-height: 0.8em;
+				color: #558b2f;
+				text-shadow: 0 0 .25em rgba(197, 225, 165, .7);
+			}
+			
+			a {
+				color: #558b2f;
+				text-decoration: none;
+			}
+
+			blockquote, q{
+				font-style: italic;
+			}
+
+			.remark-code, .remark-inline-code {
+				font-family: 'Ubuntu Mono';
+			}
+			.remark-code {
+				overflow-x: auto;
+			}
+			.remark-code:hover {
+				white-space: pre-wrap;
+			}
+
+			.footnote {
+				position: absolute;
+				bottom: 3em;
+				right: 5em;
+				text-align: right;
+			}
+
+			.center ul, .center pre{
+				text-align: left;
+			}
+
+			.inverse {
+				background: #272822;
+				color: #bdbdbd;
+				text-shadow: 0 0 20px #333;
+			}
+			.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5 {
+				color: #c5e1a5;
+				text-shadow: 0 0 .25em rgba(85, 139, 47, .7);
+			}
+			.inverse a {
+				color: #c5e1a5;
+			}
+
+			.has-bg-image {
+				background-position: center !important;
+				background-size: cover !important;
+				background-repeat: no-repeat;
+			}
+			.has-bg-image h1, .has-bg-image h2, .has-bg-image h3, .has-bg-image h4, .has-bg-image h5 {
+				color: #f5f5f5;
+				text-shadow: 0 0 .25em rgba(45, 45, 45, .7);
+			}
+			.has-bg-image a {
+				color: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="source" cols="40" rows="20">
+layout: true
+class: center middle
+
+---
+class: inverse
+
+# Introduction au développement Web
+
+---
+
+## JavaScript
+
+---
+
+### Présentation de JavaScript
+
+---
+
+JavaScript est à l'origine un langage de script orienté client, créé en 1995 pour Netscape
+
+Il a été créé pour permettre des interactions au sein du navigateur, par exemple pour demander des choses à l'utilisateur
+
+---
+
+#### Java et JavaScript
+
+Malgré un nom similaire, il ne s'agit pas d'un portage de Java dans le navigateur
+
+C'est un langage différent, avec des paradigmes et une structure différents (mais une syntaxe proche, comme pour beaucoup de langages)
+
+---
+
+#### Usage dans le navigateur et DOM
+
+À l'origine, JavaScript est fait pour manipuler le DOM de la fenêtre dans laquelle il s'exécute
+
+On peut ainsi intervenir sur le HTML servi au client, sans passer par le serveur
+
+C'est aussi un langage évenementiel : on peut donc *écouter* certains événements pour lancer des actions lorsqu'ils arrivent
+
+---
+
+#### D'autres usages possibles
+
+JavaScript est un langage très populaire, son usage se démocratise donc ailleurs que dans les navigateurs :
+
+* Sur les **serveurs**, avec *Node.js*
+* Dans les **applications mobiles**, avec *Cordova*
+* Dans les **applications desktop**, par exemple avec *NW.js*
+* Dans les **extensions** de certains *navigateurs*
+* Dans *OpenOffice.org* pour définir des **macros**
+
+Et bien d'autres…
+
+---
+
+#### Compatibilité
+
+Il existe plusieurs normes JavaScript, comme il en existe pour HTML. Ces normes sont liées au standard ECMAScript
+
+Les navigateurs ont donc parfois des implémentations différentes car les moteurs utilisés sont différents :
+
+* **V8** pour Chrome
+* **JavaScriptCore** (aussi appelé *Nitro* ou *SquirrelFish*) pour Safari
+* **Chakra** pour Internet Explorer
+* **Rhino** pour Firefox
+* **Carakan** pour Opera
+
+Et ce ne sont que les principaux moteurs…
+
+*Sans oublier que chacun de ses moteurs a des versions différentes, avec des bugs et des capacités qui varient*
+
+---
+
+### Rapport entre HTML et JavaScript
+
+Le document HTML envoyé au client indique le (ou les) script JS à charger et exécuter
+
+Une fois ce script chargé, ce dernier peut agir directement sur le DOM, et donc modifier le HTML à la volée dans le navigateur, sans que cela impacte le serveur : il s'agit d'actions locales et temporaires
+
+---
+
+### Outils nécessaires : éditeur de texte, navigateur…
+
+On peut utiliser n'importe quel éditeur de texte ou IDE, même si certains sont plus orientés Web (Atom, Brackets…) ou ont des extensions spécialisées (Sublime Text, Notepad++…)
+
+La plupart des navigateurs modernes proposent des outils de débogage performants pour tester son code, notamment Chrome et Firefox. Il est néanmoins important de tester son code sur l'ensemble des navigateurs (et versions) visés avant de passer en production
+
+---
+
+### Variables et structures
+
+Les variables sont définies grâce au mot-clé `var`
+
+On peut ensuite les utiliser directement, en indiquant simplement leur nom
+
+Les noms de variables peuvent contenir des caractères alphanumériques ainsi que quelques caractères supplémentaires (`$_`)
+
+Certains noms sont en revanche réservés (`for`, `default`, `break`, `var`, `return`, `function`, `Infinity`, `undefined`, `NaN`…) et ne peuvent donc être utilisés
+
+.footnote[
+	[Plus d'infos sur les caractères autorisés (*EN*)](https://mathiasbynens.be/notes/javascript-identifiers#valid-identifier-names)
+]
+
+---
+
+#### Principaux types de variables
+
+---
+
+##### Les booléens
+
+```javascript
+var monBooleen = true;
+
+var monAutreBooleen = false;
+```
+
+---
+
+##### Les nombres
+
+```javascript
+var unEntier = 42;
+
+var unFlottant = 3.14159265359; // On pourrait aussi utiliser `Math.PI` ici
+```
+
+---
+
+##### Les chaînes
+
+```javascript
+var uneChaine = "J'ai appris à dire \"Bonjour\".";
+
+var uneAutreChaine = 'J\'ai appris à dire "Bonjour".';
+```
+
+---
+
+##### Les tableaux
+
+```javascript
+var unTableau = new Array(6); // [undefined × 6]
+
+var unAutreTableau = new Array(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
+
+var leMêmeTableau = [1, 2, 3, 4, 5]; // [1, 2, 3, 4, 5]
+```
+
+---
+
+##### Les objets
+
+```javascript
+var personne = new Object();
+personne.prenom = "Jean";
+personne.nom = "Dupond";
+personne.age = 38;
+personne.est_marié = false;
+```
+
+Note : les types vus précédemment sont en réalité également des objets et *héritent* donc d'`Object`
+
+---
+
+##### Objets et prototypes
+
+JavaScript n'est pas un langage objet mais un langage de prototypes
+
+Certains principes liés aux objets, comme l'héritage ou le polymorphisme, sont donc plus complexes à implémenter
+
+```javascript
+var Personne = function (nom, prenom) {
+	this.nom = nom;
+	this.prenom = prenom;
+}
+Personne.prototype.direBonjour = function () {
+	alert("Je m'appelle " + this.prenom + " " + this.nom);
+}
+
+var monVoisin = new Personne('Dupond', 'Jean'); // Le mot-clé `new` n'est pas obligatoire en JS
+monVoisin.direBonjour();
+```
+
+---
+
+#### Manipulation de variables
+
+JavaScript étant un langage faiblement typé, il est courant que certaines variables soient trans-typées pour le besoin de certains traitements
+
+```javascript
+var tableau = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+tableau.sort(); // [1, 10, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+Pourquoi obtient-on ce résultat ?  
+Pour comprendre, il faut regarder [la doc de `Array.prototype.sort()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/sort).
+
+---
+
+#### Contexte : variables globales et locales
+
+Lorsqu'une variable est créée, elle est accessible dans un contexte défini
+
+Ainsi, tout bloc descendant y aura accès, mais pas les blocs parents ou étrangers
+
+```javascript
+var maVariable = "Hello";
+console.log('Avant tout : ' + maVariable);
+
+function locale () {
+	var maVariable = "Bonjour"; // La variable définie ici sera locale (méthode recommandée)
+	console.log('Dans locale : ' + maVariable);
+}
+locale();
+console.log('Après locale : ' + maVariable);
+
+function globale () {
+	maVariable = "Au revoir"; // Je définis une variable globale (méthode dangereuse)
+	console.log('Dans globale : ' + maVariable);
+}
+globale();
+console.log('Après globale : ' + maVariable);
+```
+
+---
+
+#### Fonctions anonymes
+
+En JavaScript, on peut définir des fonctions anonymes : elle n'ont pas de nom et sont donc adaptées à des usages uniques (comme des callbacks)
+
+```javascript
+document.body.addEventListener('mousemove', function (event) {
+	// Nous sommes ici dans une fonction anonyme : on ne peut donc pas la réutiliser ailleurs
+	console.dir(event);
+}, false);
+```
+
+---
+
+#### Les closures (ou fermetures)
+
+Les closures sont des fonctions dépendantes de leur contexte : elles utilisent des variables définies dans leur parent
+
+Prenons l'exemple suivant :
+
+```javascript
+function fabriqueRedimensionneur(taille) {
+	return function() {
+		document.body.style.fontSize = taille + 'px';
+	};
+}
+
+var taille12 = fabriqueRedimensionneur(12);
+var taille14 = fabriqueRedimensionneur(14);
+var taille16 = fabriqueRedimensionneur(16);
+```
+
+Nous obtenons ainsi 3 nouvelle fonctions `taille12`, `taille14` et `taille16` sans duplication de code
+
+Les closures permettent ainsi de simuler des méthodes privées sur des objets
+
+.footnote[
+	[Plus d'infos sur le MDN](https://developer.mozilla.org/fr/docs/Web/JavaScript/Closures)
+]
+
+---
+
+### Manipulation du DOM
+
+---
+
+#### Introduction au DOM
+
+Le **Document Object Model** est une représentation des documents dérivés du XML (HTML en faisant partie)
+
+On peut le modifier, mais aussi le traverser
+
+Chaque objet qui le compose est appelé un nœud, qui a des propriétés et des méthodes
+
+---
+
+##### Rechercher dans le DOM
+
+```javascript
+var header = document.getElementById('#mon-header'); // Ancienne méthode, récupère le premier nœud ayant cet id
+
+var header = document.querySelector('#mon-header'); // Récupère le premier nœud correspondant au sélecteur
+var li = document.querySelectorAll('ul>li'); // Récupère tous les nœuds correspondant au sélecteur
+```
+
+---
+
+##### Modifier les propriétes d'un nœud
+
+```javascript
+header.classList.add('une-class'); // Méthodes récentes : meilleures performances et facilité d'utilisation
+header.classList.remove('une-class');
+header.classList.toggle('une-class');
+
+header.classList.contains('une-class'); // Indique si la class est appliquée au nœud
+
+header.className = 'ma-premiere-class une-autre-class'; // Propriété ancienne : meilleure compatibilité, plus difficile à manipuler
+```
+
+---
+
+##### Créer, déplacer, supprimer un nœud
+
+```javascript
+var lien = document.createElement('a');
+lien.href = '//www.google.fr';
+lien.textContent = 'Google';
+
+header.appendChild(lien);
+header.insertBefore(lien, header.firstChild);
+
+header.removeChild(lien); // Ou alors…
+lien.parentNode.removeChild(lien);
+```
+
+---
+
+#### Installer jQuery
+
+Avant toute chose il faut choisir la version que l'on souhaite utiliser, suivant les besoins : certaines versions supportent plus de navigateurs, pendant que d'autres sont plus légères
+
+[Site officiel de jQuery](https://jquery.com/)
+
+[Documentation officielle](https://api.jquery.com/) ou [sur DevDocs](https://devdocs.io/jquery/)
+
+Après avoir inséré l'élément `script`, on peut utiliser jQuery de deux façons :
+
+* Via `jQuery` (qui permet d'éviter les conflits avec d'autres bibliothèques éventuelles)
+* Via la notation raccourcie `$` (qui est la plus courante)
+
+---
+
+#### Manipuler le DOM avec jQuery
+
+jQuery est un ensemble de raccourcis, principalement pour manipuler le DOM
+
+Il ne s'agit ni plus ni moins que de JavaScript, développé sous forme de bibliothèque
+
+Il y a donc un niveau d'abstraction supplémentaire, qui permet de corriger certains problèmes de compatibilité (bugs, polyfills…)
+
+---
+
+##### Modifier les propriétes d'un nœud
+
+```javascript
+$header = $('#header');
+
+$header.addClass('une-class');
+$header.removeClass('une-class');
+$header.toggleClass('une-class');
+
+$header.hasClass('une-class');
+
+// Il n'y a pas de raccourci pour `className` avec jQuery
+```
+
+---
+
+##### Créer, déplacer, supprimer un nœud
+
+On peut généralement chaîner les méthodes jQuery
+
+```javascript
+var $lien = $('<a>').href('//www.google.fr');
+$lien.text('Google');
+
+$header.append(lien);
+$header.prepend(lien);
+
+$lien.remove();
+```
+
+---
+
+### Les événements
+
+Les événements permettent de lancer des actions en fonction de certaines conditions, par exemple lorsque l'utilisateur clique sur un bouton ou lorsqu'il tape dans un champ de texte
+
+```javascript
+lien.addEventListener('click', function (e) {}, false);
+```
+
+---
+
+#### Présentation des principaux événements
+
+* `click` : clic de la souris (également simulé au clavier sur certains éléments)
+* `mouseenter` : le pointeur entre dans la zone de l'élément
+* `mousemove` : le pointeur bouge dans la zone
+* `mouseleave` : le pointeur quitte la zone de l'élément
+* `focus` : l'élément obtient le focus
+* `blur` : l'élément perd le focus
+* `keydown` : une touche du clavier est appuyée
+* `keyup` : une touche du clavier est relâchée
+* `keypress` : une touche du clavier a été appuyée puis relâchée
+* `submit` : un formulaire est validé (et est donc prêt à être envoyé au serveur)
+* `touchstart` : l'utilisateur commence à toucher la zone de l'élément
+* `touchmove` : l'utilisateur bouge en continuant à toucher la zone
+* `touchend` : l'utilisateur ne touche plus la zone
+* `touchcancel` : le touch a été interrompu (par exemple à l'apparition d'une popup)
+
+---
+
+#### Phases événementielles
+
+##### Phase de capture
+
+L'événement est en train d'être transmis par les ancêtres : de `window`, en passant par `document` jusqu'à la cible
+
+##### À la cible
+
+L'événement est transmis à la cible. Lorsque l'événement ne bouillonne pas, son traitement s'arrête là
+
+##### Phase de bouillonnement
+
+L'événement remonte l'arbre du DOM jusqu'à `window`
+
+---
+
+#### Gestion des événements avec jQuery
+
+```javascript
+$lien.on('click', function (e) {});
+```
+
+---
+
+#### Exercice pratique
+
+Permettre, via un bouton, de cacher/afficher un bloc
+
+On peut reprendre le design de blog créé précédemment et afficher/cacher les articles via des boutons dans la barre de titre de ceux-ci
+
+Utiliser, de préférence, des `closures` pour gérer plusieurs éléments
+
+---
+
+#### Exercice pratique
+
+Créer deux `select[multiple]` avec des jeux de données (une simple boucle PHP peut suffire)
+
+Mettre en place des boutons pour déplacer des lignes d'un `select` à l'autre (une ligne ou plusieurs à la fois)
+
+Ajouter un texte au-dessus de chaque `select` pour indiquer le nombre d'éléments présents dans chacun d'entre eux
+
+Ce texte devra avoir un style différent pour un `select` vide (par exemple un fond rouge)
+
+---
+
+### Les requêtes AJAX
+
+**A**synchronous **Ja**vaScript **X**MLHttpRequest
+
+Une requête se présente sous la forme suivante :
+
+```javascript
+var xhr = new XMLHttpRequest();
+
+xhr.onreadystatechange = function () {
+	if (this.readyState === 4) { // La réponse a été reçue
+		if (this.status === 200) { // Le serveur n'a pas indiqué de problème
+			var result = JSON.parse(this.responseText);
+			alert('OK');
+			console.info('XHR successful', result);
+		}
+		else {
+			alert('Erreur');
+			console.error('Error XHR', this);
+		}
+	}
+}
+
+xhr.open('GET', 'file.json', true); // Le troisième paramètre sert à lancer la requête de façon asynchrone pour ne pas bloquer la page
+xhr.send();
+```
+
+---
+
+#### Avec jQuery
+
+```javascript
+$.ajax('file.json', {
+	dataType: 'json',
+	success: function (result) {
+		alert('OK');
+		console.info('XHR succesful', result);
+	},
+	error: function (xhr) {
+		alert('Erreur');
+		console.info('Error XHR', xhr);
+	}
+});
+```
+
+---
+
+#### Exercice pratique
+
+Charger un fichier JSON présent sur le serveur pour afficher les commentaires d'un article
+
+---
+
+#### Exercice pratique
+
+Envoyer le formulaire de commentaire via AJAX
+
+Traiter le retour en JavaScript : afficher le commentaire et vider le formulaire si tout est OK, afficher une erreur sinon
+		</textarea>
+
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+	</body>
+</html>
