@@ -767,13 +767,16 @@ Pour configurer les routes d'un modules, il faut d'abord s'assurer que les dépe
 import { RouterModule, Routes } from '@angular/router';
 ```
 
+---
+
 On peut ensuite déclarer nos routes :
 
 ```typescript
 const appRoutes: Routes = [
   { path: '/home', component: HomePageComponent },
   { path: '/user/profile', component: UserProfileComponent },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
@@ -983,7 +986,7 @@ Pour utiliser votre service, il suffit donc de le charger directement dans votre
 export class UserDetailComponent {
   public user: User;
   constructor(private userService: UserService) {
-  	this.user = this.userservice.getUser();
+    this.user = this.userService.getUser();
   }
 }
 ```
@@ -1072,7 +1075,7 @@ Cela vous donnera donc un Observable (transformable en `Promise` avec `.toPromis
 
 ```typescript
 this.http.get(url)
-.map(res => res.json().data as User);
+  .map(res => res.json().data as User);
 ```
 
 ---
