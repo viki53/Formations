@@ -1298,8 +1298,60 @@ Il suffit pour cela de nommer l'élément dont vous voulez vérifier la validit�
 * Implémenter une barre de recherche pour trouver une ligne précise
 * Permettre de voir les détails de chaque ligne sur une page différente
 * Sur la page de détails, au clic sur un bouton, afficher les horaires temps réel de la ligne
+* ​
 
 ------
+
+## Créer une directive
+
+La création d'une directive est similaire aux autres éléments Angular, il s'agit d'utiliser le bon décorateur :
+
+```typescript
+import { Directive, ElementRef, Renderer } from '@angular/core';
+
+@Directive({
+  selector: '[myHidden]' // Sélecteur CSS de la directive
+})
+export class HiddenDirective {
+  constructor(el: ElementRef, renderer: Renderer) {
+    // renderer permet de modifier dynamiquement l'élément
+    renderer.setElementStyle(el.nativeElement, 'display', 'none');
+  }
+}
+```
+
+---
+
+Il ne faut pas oublier de l'importer dans notre module :
+
+```typescript
+import { HiddenDirective } from './hidden.directive';
+
+@NgModule({
+  declarations: [
+    HiddenDirective,
+    // …
+  ],
+  exports: [
+    HiddenDirective,
+    // …
+  ]
+})
+export class SharedModule {}
+```
+
+[**Plus d'exemples**](https://www.codementor.io/christiannwamba/build-custom-directives-in-angular-2-jlqrk7dpw)
+
+---
+
+### Travaux pratiques
+
+En reprenant le code de l'appli STAR
+
+* Utiliser une directive pour afficher les détails d'une ligne de bus à différents endroits
+* Utiliser une directive pour styliser les bus en retard
+
+---
 
 # Travailler à plusieurs
 
@@ -1386,13 +1438,21 @@ Le fichier `src/test.ts` sert à configurer et lancer les tests pour Angular.
 
 ---
 
-Vous trouverez un exemple de test dans `src/app/app.component.ts`. N'hésitez pas à vous en inspirer pour fournir des tests pour l'ensemble de vos composants et services.
+Vous trouverez un exemple de test dans `src/app/app.component.spec.ts`. N'hésitez pas à vous en inspirer pour fournir des tests pour l'ensemble de vos composants et services.
 
 Pour lancer ces tests, la commande `ng test` se chargera de tout.
 
 ---
 
-## Automatiser les tests
+### Travaux pratiques
+
+* Mettre en place les tests appropriés pour l'application STAR.
+* Faire en sorte qu'aucune régression de soit possible
+* Ajuster le code pour que le linter passe également
+
+---
+
+### Automatiser les tests
 
 ![center Charlie Chaplin travaille à la chaîne](img/automatism.gif)
 
