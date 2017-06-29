@@ -6,9 +6,11 @@ Aussi bien pour la postérité que pour rendre service aux curieux qui souhaiter
 
 ## Licence
 
-Tous les contenus sont ma propriété, vous ne pouvez les réutiliser, distribuer ou modifier sans mon accord explicite.
+Tous les contenus écrits sont ma propriété, vous ne pouvez les réutiliser, distribuer ou modifier sans mon accord explicite.
 
 Vous êtes néanmoins libres de les utiliser pour votre usage personnel, afin de vous former.
+
+Les images et vidéos sont, le plus souvent, trouvées sur Internet. Elles appartiennent donc à leurs auteurs respectifs.
 
 ## Liste des formations
 
