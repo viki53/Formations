@@ -1,0 +1,11 @@
+<p [ngPlural]="folders?.length">
+  <ng-template ngPluralCase="=0">Il n'y a aucun dossier</ng-template>
+  <ng-template ngPluralCase="=1">Il y a un seul dossier&nbsp;:</ng-template>
+  <ng-template ngPluralCase="other">Il y a {{ folders?.length }} dossiers&nbsp;:</ng-template>
+</p>
+
+<ul>
+  <li *ngFor="let dir of folders">
+    <app-explorer-directory [directory]="dir"></app-explorer-directory>
+  </li>
+</ul>

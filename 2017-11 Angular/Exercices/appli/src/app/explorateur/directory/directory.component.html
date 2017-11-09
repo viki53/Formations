@@ -1,0 +1,15 @@
+<h2>
+  {{ directory?.name }}
+</h2>
+
+<p [ngPlural]="directory?.files?.length">
+  <ng-template ngPluralCase="=0">Je ne contiens aucun document</ng-template>
+  <ng-template ngPluralCase="=1">Je contiens un seul document&nbsp;:</ng-template>
+  <ng-template ngPluralCase="other">Je contiens {{ directory?.files?.length }} documents&nbsp;:</ng-template>
+</p>
+
+<ul *ngIf="directory?.files?.length">
+  <li *ngFor="let doc of directory.files">
+    <app-explorer-document [document]="doc" (delete)="deleteDocument($event)"></app-explorer-document>
+  </li>
+</ul>

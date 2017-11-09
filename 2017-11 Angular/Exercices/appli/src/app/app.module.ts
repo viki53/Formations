@@ -6,6 +6,7 @@ import localeFr from '@angular/common/locales/fr';
 
 import { CatalogueModule } from './catalogue/catalogue.module';
 import { FormationModule } from './formation/formation.module';
+import { ExplorateurModule } from './explorateur/explorateur.module';
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +20,8 @@ registerLocaleData(localeFr);
     BrowserModule,
     FormsModule,
     CatalogueModule,
-    FormationModule
+    FormationModule,
+    ExplorateurModule
   ],
   providers: [
     {

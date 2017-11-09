@@ -1,0 +1,7 @@
+<h3>
+  {{ document?.name }}.{{ document?.ext }}
+</h3>
+
+<p>{{ document.size | fileSize }}</p>
+
+<button (click)="doDelete()">Supprimer</button>
