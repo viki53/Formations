@@ -1,0 +1,49 @@
+<p>
+  Il y a {{ pupils?.length }} élèves inscrits
+</p>
+
+<p>
+  <label for="min-age-input">Âge minimum</label>
+  <input type="number" id="min-age-input" min="18" max="65" [(ngModel)]="minAge" (ngModelChange)="filterPupils()">
+</p>
+
+<p>
+  <label for="arrival-date-sort-input">Tri par date d'arrivée</label>
+  <select id="arrival-date-sort-input" [(ngModel)]="arrivalDateSort" (ngModelChange)="filterPupils()">
+    <option value="ASC">Du plus récent au plus ancien</option>
+    <option value="DESC">Du plus ancien au plus récent</option>
+  </select>
+</p>
+
+<table *ngIf="pupils?.length">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Âge</th>
+      <th>Profession</th>
+      <th>Téléphone</th>
+      <th>Arrivée</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pupil of pupils">
+      <td>
+        {{ pupil.title }}
+        {{ pupil.firstName }}
+        {{ pupil.lastName }}
+      </td>
+      <td>
+        {{ pupil.age }} ans
+      </td>
+      <td>
+        {{ pupil.jobTitle }}
+      </td>
+      <td>
+        {{ pupil.phoneNumber }}
+      </td>
+      <td>
+        {{ pupil.arrivalDate | date:'mediumDate' }}
+      </td>
+    </tr>
+  </tbody>
+</table>
