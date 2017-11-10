@@ -14,9 +14,12 @@ export class DocumentComponent implements OnInit {
   @Output('delete')
   public delete: EventEmitter<ExpDocument> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+    console.log('constructor', this.document);
+  }
 
   ngOnInit() {
+    console.log('onInit', this.document);
   }
 
   public doDelete() {
